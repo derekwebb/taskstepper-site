@@ -14,3 +14,11 @@
 	path = sites/all/modules/contrib/module_filter
 	url = http://git.drupal.org/project/module_filter.git
 	branch = 7.x-2.x
+[submodule "sites/all/modules/contrib/entity"]
+	path = sites/all/modules/contrib/entity
+	url = http://git.drupal.org/project/entity.git
+	branch = 7.x-1.x
+[submodule "sites/all/modules/contrib/entityreference"]
+	path = sites/all/modules/contrib/entityreference
+	url = http://git.drupal.org/project/entityreference.git
+	branch = 7.x-1.x
