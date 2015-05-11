@@ -22,3 +22,11 @@
 	path = sites/all/modules/contrib/entityreference
 	url = http://git.drupal.org/project/entityreference.git
 	branch = 7.x-1.x
+[submodule "sites/all/modules/contrib/ctools"]
+	path = sites/all/modules/contrib/ctools
+	url = http://git.drupal.org/project/ctools.git
+	branch = 7.x-1.x
+[submodule "sites/all/modules/contrib/views"]
+	path = sites/all/modules/contrib/views
+	url = http://git.drupal.org/project/views.git
+	branch = 7.x-3.x
