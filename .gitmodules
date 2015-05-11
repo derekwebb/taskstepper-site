@@ -30,3 +30,11 @@
 	path = sites/all/modules/contrib/views
 	url = http://git.drupal.org/project/views.git
 	branch = 7.x-3.x
+[submodule "sites/all/modules/contrib/panels"]
+	path = sites/all/modules/contrib/panels
+	url = http://git.drupal.org/project/panels.git
+	branch = 7.x-3.x
+[submodule "sites/all/modules/contrib/panelizer"]
+	path = sites/all/modules/contrib/panelizer
+	url = http://git.drupal.org/project/panelizer.git
+	branch = 7.x-3.x
