@@ -1,0 +1,16 @@
+[submodule "sites/all/modules/contrib/navbar"]
+	path = sites/all/modules/contrib/navbar
+	url = http://git.drupal.org/project/navbar.git
+	branch = 7.x-1.x
+[submodule "sites/all/modules/contrib/libraries"]
+	path = sites/all/modules/contrib/libraries
+	url = http://git.drupal.org/project/libraries.git
+	branch = 7.x-2.x
+[submodule "sites/all/modules/contrib/field_collection"]
+	path = sites/all/modules/contrib/field_collection
+	url = http://git.drupal.org/project/field_collection.git
+	branch = 7.x-1.x
+[submodule "sites/all/modules/contrib/module_filter"]
+	path = sites/all/modules/contrib/module_filter
+	url = http://git.drupal.org/project/module_filter.git
+	branch = 7.x-2.x
