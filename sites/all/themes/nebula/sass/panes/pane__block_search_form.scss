@@ -1,0 +1,23 @@
+@import "global/colors";
+@import "compass/css3/border-radius";
+
+.pane-search-form {
+  position: relative;
+  font-size: 90%;
+  margin-top: 1.75em;
+  margin-left: 1em;
+  
+  input.form-text {
+    @include border-radius(15px);
+    border: 1px solid darken($ltgray, 7%);
+    background: lighten($ltgray, 10%);
+    padding-left: .5em;
+    padding-right: 1.5em;
+  }
+  
+  input.form-submit {
+    position: absolute;
+    top: 4px;
+    right: -8px;
+  }
+}

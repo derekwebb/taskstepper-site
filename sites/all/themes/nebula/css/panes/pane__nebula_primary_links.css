@@ -1,0 +1,29 @@
+/* line 4, ../../sass/panes/pane__nebula_primary_links.scss */
+.pane-nebula-primary-links {
+  margin-top: 1.75em;
+  margin-left: 1.5em;
+  float: left;
+}
+/* line 9, ../../sass/panes/pane__nebula_primary_links.scss */
+.pane-nebula-primary-links ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 13, ../../sass/panes/pane__nebula_primary_links.scss */
+.pane-nebula-primary-links ul li {
+  list-style: none;
+  display: inline-block;
+}
+/* line 16, ../../sass/panes/pane__nebula_primary_links.scss */
+.pane-nebula-primary-links ul li a {
+  color: #777777;
+}
+/* line 19, ../../sass/panes/pane__nebula_primary_links.scss */
+.pane-nebula-primary-links ul li a:hover {
+  color: #515151;
+}
+/* line 23, ../../sass/panes/pane__nebula_primary_links.scss */
+.pane-nebula-primary-links ul li .divider {
+  margin: 0 3px;
+  color: #dddddd;
+}

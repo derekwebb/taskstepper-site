@@ -1,0 +1,23 @@
+@import 'global/fonts';
+@import 'global/colors';
+@import 'global/headers';
+
+.pane-nebula-site-name {
+  margin-top: 1em;
+  margin-left: .5em;
+  .first {
+    font-size: 2.5em; 
+    font-family: $serif_fonts;
+    font-weight: normal;
+    letter-spacing: 2px;
+    display: block;
+    color: $black;
+  }
+  .second {
+    @include h3;
+    font-family: $serif_fonts;
+    font-weight: normal;
+    color: $mdgray;
+    letter-spacing: 1.5px;
+  }
+}

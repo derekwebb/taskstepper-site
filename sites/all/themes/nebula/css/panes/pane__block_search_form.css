@@ -1,0 +1,23 @@
+/* line 4, ../../sass/panes/pane__block_search_form.scss */
+.pane-search-form {
+  position: relative;
+  font-size: 90%;
+  margin-top: 1.75em;
+  margin-left: 1em;
+}
+/* line 10, ../../sass/panes/pane__block_search_form.scss */
+.pane-search-form input.form-text {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  border: 1px solid #cbcbcb;
+  background: #f7f7f7;
+  padding-left: .5em;
+  padding-right: 1.5em;
+}
+/* line 18, ../../sass/panes/pane__block_search_form.scss */
+.pane-search-form input.form-submit {
+  position: absolute;
+  top: 4px;
+  right: -8px;
+}

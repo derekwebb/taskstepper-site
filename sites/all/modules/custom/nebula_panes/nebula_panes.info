@@ -1,0 +1,4 @@
+name = Nebula panes
+description = Provides custom panes for Nebula theme. 
+package = "Other"
+core = 7.x 

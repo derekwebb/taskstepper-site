@@ -1,0 +1,26 @@
+
+// Contains only globally needed scss declarations
+//  If it is not visible on EVERY page do not
+//  add it here!
+
+// external imports
+@import 'compass/css3/opacity';
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/utilities/general/clearfix";
+
+//@import 'global/arrows';
+//@import 'global/buttons';
+@import 'global/colors';
+@import 'global/fonts';
+//@import 'global/gradients';
+//@import 'global/grid_mix';
+@import 'global/site_vars';
+//@import 'global/icons';
+
+body {
+  @include font;
+}
+
+

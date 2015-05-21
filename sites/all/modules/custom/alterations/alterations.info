@@ -1,0 +1,6 @@
+name = Alterations
+description = Module that provides some alterations here and there. The "glue" module.
+core = 7.x
+package = Other
+
+;files[] = includes/some_file.inc

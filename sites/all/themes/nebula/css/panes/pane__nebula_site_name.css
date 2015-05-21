@@ -1,0 +1,24 @@
+/* line 5, ../../sass/panes/pane__nebula_site_name.scss */
+.pane-nebula-site-name {
+  margin-top: 1em;
+  margin-left: .5em;
+}
+/* line 8, ../../sass/panes/pane__nebula_site_name.scss */
+.pane-nebula-site-name .first {
+  font-size: 2.5em;
+  font-family: "Lora", "Times New Roman", Times, serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  display: block;
+  color: #000000;
+}
+/* line 16, ../../sass/panes/pane__nebula_site_name.scss */
+.pane-nebula-site-name .second {
+  font-size: 1.33em;
+  line-height: 1.5em;
+  font-weight: 600;
+  font-family: "Lora", "Times New Roman", Times, serif;
+  font-weight: normal;
+  color: #777777;
+  letter-spacing: 1.5px;
+}

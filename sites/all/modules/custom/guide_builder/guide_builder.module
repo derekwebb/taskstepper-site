@@ -1,0 +1,21 @@
+<?php
+
+function guide_builder_form_alter(&$form, &$form_state, $form_id) {
+    //dpm($form_id);
+}
+
+
+function guide_builder_menu() {
+    $items['guide/%/edit'] = array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('guide_page_edit_form', 1),
+        'access callback' => 'node_access',
+        'access arguments' => array('update', 1),
+        'type' => MENU_CALLBACK,
+        'file' => 'includes/guide_builder.pages.inc'
+        
+    );
+    
+    return $items;
+}
+

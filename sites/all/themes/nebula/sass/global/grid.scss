@@ -1,0 +1,27 @@
+
+// Compiles CoralNexus grid styles.
+//  Only associated grid and layout styles
+//  should be found here. Failure to 
+//  abide by this policy could result in
+//  doughnut priveleges being revoked!
+
+@import 'global/grid_mix'; // mixins that power the grid
+
+// Here is where the css is generated
+@for $i from 1 through $columns {
+  .grid-#{$i} { 
+    @include col($i); 
+    @if $i != $columns {
+      margin-right: $col_margin; 
+    }
+  }
+  .grid-#{$i}-last { @include col($i, 'true'); }
+  .prepend-#{$i}   { @include prepend($i); } // div. added to overcome margin on .grid-N
+  .append-#{$i}    { @include append($i); }
+}
+.grid-last {
+  @include last;
+} 
+.row {
+  @include row;
+}

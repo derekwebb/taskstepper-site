@@ -1,0 +1,6 @@
+name = Guide builder
+description = Module that powers the guide components of the TaskStepper guides
+core = 7.x
+package = Guide
+
+files[] = includes/guide_builder.pages.inc

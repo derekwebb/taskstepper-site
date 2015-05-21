@@ -1,0 +1,30 @@
+
+name        = Nebula
+description = A fluid grid based panels_everywhere oriented theme
+package     = Themes
+version     = VERSION
+core        = 7.x
+
+; - Stylesheets
+stylesheets[all][]   = css/screen.css
+stylesheets[print][] = css/print.css
+
+; - Global scripts
+; -- Libraries
+;scripts[] = js/lib/prettify/src/prettify.js
+
+; -- Custom
+
+; - Panels
+plugins[panels][layouts]     = plugins/layouts
+plugins[panels][styles]      = plugins/styles
+api[panels][styles][version] = 2
+
+
+; - Page manager
+api[page_manager][pages_default][version] = 1
+api[page_manager][pages_default][path]    = pages
+
+
+; - Settings
+;settings[mosaic_setting] = "some setting"

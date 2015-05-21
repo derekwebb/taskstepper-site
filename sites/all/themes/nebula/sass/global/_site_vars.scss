@@ -1,0 +1,24 @@
+
+// Contains site theme variables
+
+$site_width: 80%; //962px;
+
+// Responsive breakpoints
+$phonew: 320px;
+$tabletw: 767px;
+$desktopw: 1024px;
+
+@mixin site_width($center:'true') {
+  width: $site_width;
+  max-width: $desktopw;
+  min-width: $phonew;
+  
+  @if $center == 'true' {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+

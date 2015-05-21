@@ -1,0 +1,13 @@
+/* line 10, ../../sass/layouts/nebula_1col_stacked.scss */
+body > .layout-1col-stacked .row.col-top {
+  padding-bottom: 6px;
+  background: url("../../assets/images/header_tile.jpg") bottom left repeat-x;
+}
+/* line 18, ../../sass/layouts/nebula_1col_stacked.scss */
+body > .layout-1col-stacked .row .limiter {
+  width: 80%;
+  max-width: 1024px;
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}

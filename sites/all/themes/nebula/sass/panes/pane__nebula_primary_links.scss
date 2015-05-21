@@ -1,0 +1,29 @@
+
+@import 'global/colors';
+
+.pane-nebula-primary-links {
+  margin-top: 1.75em;
+  margin-left: 1.5em;
+  float: left;
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    
+    li {
+      list-style: none;
+      display: inline-block;
+      a {
+        color: $mdgray;
+        
+        &:hover {
+          color: $dkgray;
+        }
+      }
+      .divider {
+        margin: 0 3px;
+        color: $ltgray;
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+
+@import 'global/headers';
+@import 'global/colors';
+
+.pane-page-slogan div {
+  @include h4;
+  color: darken($ltgray, 7%);
+}

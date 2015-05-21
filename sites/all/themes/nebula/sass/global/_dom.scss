@@ -1,0 +1,446 @@
+
+// File should only contain default dom object styles for CoralNexus
+
+//@import "global/buttons";
+@import "global/colors";
+@import "global/headers";
+@import "global/fonts";
+//@import "global/gradients";
+
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/utilities/general/clearfix";
+
+// Base 18px
+// pixel to em
+// 10px - 0.55em
+// 11px - 0.61em
+// 12px - 0.66em
+// 13px - 0.72em
+// 14px - 0.77em
+// 15px - 0.83em
+// 16px - 0.88em
+// 17px - 0.94em
+// 18px - 1em
+// 19px - 1.05em
+// 20px - 1.11em
+// 21px - 1.16em
+// 22px - 1.22em
+// 23px - 1.27em
+// 24px - 1.33em
+// 25px - 1.38em
+// 26px - 1.44em
+// 27px - 1.50em
+// 28px - 1.55em
+// 29px - 1.61em
+// 30px - 1.66em
+
+body {
+  font-size: 18px;
+  font-family: $sans_fonts;
+  color: $dkgray;
+  overflow-x: hidden;
+}
+html > body {
+  line-height: $default_vert_unit;
+}
+
+
+// --- Headers
+h1, h2, h3, h4, h5, h6 {
+  color: $dkgray;
+}
+
+
+// See _headers.scss for mixins
+h1 {
+  @include h1;
+}
+h2 {
+  @include h2;
+}
+h3 {
+  @include h3;
+}
+h4 {
+  @include h4;
+}
+h5 {
+  @include h5;
+}
+
+// --- Media
+img,
+object,
+embed,
+video {
+  max-width: 100%;
+}
+
+
+// --- Links
+a,
+li a,
+li.leaf a {
+  color: lighten($dkblue, 10%);
+  font-size: 100%;
+  font-weight: bold;
+  line-height: $default_vert_unit;
+  text-decoration: none;
+  outline: none;
+
+  &:active, &.active { color: $dkblue; }
+  &:hover { color: $dkblue; }
+}
+a.freelink-createnode {
+  color: $mdred;
+  &:hover {
+    color: $dkred;
+  }
+}
+
+// --- Text
+strong, b {
+  font-weight: bold;
+}
+
+p {
+  margin: 0 0 $default_vert_unit 0;
+  color: $dkgray;
+}
+
+em,.em {
+  font-style: italic;
+}
+
+small {
+  font-size: 80%;
+  line-height: 1.25em;
+}
+
+hlite,
+.hlite {
+  display: block;
+  background: lighten($ltyellow, 5%);
+  color: darken($mdgray, 7%);
+  margin-bottom: $default_vert_unit;
+  padding: $default_vert_unit / 2;
+  text-align: center;
+}
+
+box, .box,
+pre {
+  display: block; // for box
+  background: lighten($ltgray, 7%);
+  padding: 1em;
+  margin-bottom: $default_vert_unit;
+  border: 1px solid darken($ltgray, 7%);
+  color: $dkgray;
+
+  @include border-radius(3px);
+
+}
+
+hr {
+  height: 0px;
+  border-color: $ltgray;
+  border-width: 1px 0 0;
+  border-style: solid none none;
+}
+
+div {
+  color: $dkgray;
+}
+
+// --- Lists
+ul,
+.item-list ul {
+  margin: $default_vert_unit 0;
+
+  li,
+  li.leaf {
+    list-style: disc;
+    list-style-image: url('/sites/all/themes/nebula/assets/images/li-red.png');
+    margin: 0 0 0 1em;
+    padding-top: 0;
+    list-style-position: outside;
+    color: $dkgray;
+  }
+  li.collapsed {
+    list-style-image: url('/sites/all/themes/nebula/assets/images/li-collapse-green.png');
+    margin: 0 0 0 1em !important;
+    padding-top: 0;
+  }
+  li.expanded {
+    list-style-image: url('/sites/all/themes/nebula/assets/images/li-open-blue.png');
+    margin: 0 0 0 1em !important;
+    padding-top: 0;
+  }
+}
+
+.drupal-navbar ul li.leaf,
+.drupal-navbar ul li.collapsed,
+.drupal-navbar ul li.expanded, {
+  margin: 0 !important;
+}
+
+#autocomplete {
+  border: 1px solid $ltgray;
+
+  ul {
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0;
+
+    li,
+    li.leaf {
+      margin: 0;
+      padding: 2px 3px;
+      list-style: none;
+      list-style-image: none;
+      border-bottom: 1px solid $ltgray;
+    }
+  }
+}
+
+ul.menu li {
+  margin: 0;
+}
+
+ol {
+  list-style: decimal;
+  margin-left: 1.325em;
+}
+
+dl {
+  margin-top: 2 * $default_vert_unit;
+  margin-bottom: $default_vert_unit;
+}
+dt {
+  margin-top: $default_vert_unit / 2;
+}
+dd {
+  margin-left: 2em;
+  margin-bottom: $default_vert_unit / 2;
+  font-size: .9em;
+}
+
+
+// the item actions (edit delete etc...)
+.html ul.links {
+  display: block;
+  min-height: $default_vert_unit;
+  margin: 0;
+
+  li {
+    margin: 0;
+    padding: 0 3px;
+    border-right: none;
+    border-left: none;
+
+    a {
+    }
+  }
+}
+
+
+
+// --- Forms
+.html .form-item {
+  margin: ($default_vert_unit / 2) 0 $default_vert_unit 0;
+
+  label {
+    font-weight: bold;
+    color: $mdgray;
+  }
+}
+
+.html .form-actions {
+  margin: ($default_vert_unit / 2) 0;
+}
+
+input.form-submit {
+  //@include btn-matte-inset;
+  //@include btn-structure;
+
+  margin: 0 5px 0 0;
+}
+input#edit-delete {
+  margin-left: 2em;
+  //@include btn-matte-inset(0px, 16px, $mdred, $mdred);
+  //@include btn-structure;
+}
+.form-textarea {
+  font-size: 1em;
+  color: $dkgray;
+  padding: ($default_vert_unit / 4);
+  border: 1px solid $ltgray;
+  @include border-radius(12px);
+  @include box-shadow(inset 0px 5px 5px rgba(0,0,0,.1));
+}
+.form-textarea-wrapper .grippie {
+  display: none;
+}
+
+.filter-wrapper {
+  padding: 0;
+
+  .filter-help {
+    float: right;
+    text-align: right;
+    width: 49%;
+    padding: 0;
+  }
+  .form-item {
+    float: left;
+    width: 50%;
+    margin: 0 0 $default_vert_unit;
+    padding: 0;
+
+    select,
+    label {
+      float: left;
+      margin-right: 5px;
+    }
+  }
+  .filter-guidelines {
+    clear: both;
+  }
+}
+
+.form-wrapper .description,
+.form-item .description {
+  background: lighten($ltgreen, 20%);
+  font-size: 0.85em;
+  padding: 0 3px;
+}
+
+.form-text {
+  font-size: 1.15em;
+  width: 100%;
+  padding: .25em;
+  box-sizing: border-box;
+  border: 1px solid $ltgray;
+  color: $dkgray;
+}
+
+input[type='password'] {
+  //background: lighten($ltyellow, 5%);
+}
+
+html.js input.form-autocomplete {
+  background-image: url(../assets/images/coral-throbber-blue-15.gif);
+  background-position: 99.5% 10px;
+  background-repeat: no-repeat;
+}
+
+html.js input.form-autocomplete {
+  background-position: 99.5% 10px;
+}
+html.js input.throbbing {
+  background-position: 99.5% -124px; /* LTR */
+}
+
+.vertical-tabs ul li {
+  list-style: none;
+}
+
+
+html.js fieldset.collapsible {
+  height: auto;
+  display: block;
+
+  legend {
+    a {
+      //@include btn-matte-inset(3px, 18px, $dkyellow, darken($dkyellow, 10%), $white);
+      //@include btn-structure(2px ($default_vert_unit / 2), 18px, 3px);
+    }
+  }
+}
+
+
+
+.btn,
+a.btn {
+  &:hover {
+    color: $white;
+  }
+
+  //@include btn-matte-inset;
+  //@include btn-structure;
+}
+
+.btn-grn,
+a.btn-grn {
+  @extend .btn;
+
+  //@include btn-matte-inset(0px, 16px, $mdgreen, darken($mdgreen, 3%), $white);
+  //@include btn-structure;
+}
+
+
+// Tables
+table {
+  width: 99.85%;
+  th {
+    color: $mdgray;
+    padding: 0 2px;
+  }
+  tr.even {
+    background: lighten($ltgray, 4%);
+    border: none;
+  }
+  tr.odd {
+    background: lighten($ltgray, 8%);
+    border: none;
+  }
+  a.tabledrag-handle .handle {
+    margin: 0em .25em 0 1em;
+    padding: 0.5em 0.2em;
+  }
+  tr.odd .form-item,
+  tr.even .form-item {
+    white-space: normal;
+  }
+}
+
+
+// HTML5 display definitions
+// -- see also normailize: http://github.com/necolas/normalize.css
+//Corrects `block` display not defined in IE6/7/8/9 & FF3.
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+    display: block;
+}
+
+// Corrects `inline-block` display not defined in IE6/7/8/9 & FF3.
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+// Prevents modern browsers from displaying `audio` without controls.
+//  Remove excess height in iOS5 devices.
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+// Addresses styling for `hidden` attribute not present in IE7/8/9, FF3, S4.
+// Known issue: no IE6 support.
+[hidden] {
+    display: none;
+}

@@ -1,0 +1,4 @@
+name = NG panes
+description = Provides custom AngularJS enabled panes TaskStepper 
+package = "Other"
+core = 7.x 

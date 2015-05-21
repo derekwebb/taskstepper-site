@@ -1,0 +1,75 @@
+/* line 4, ../../sass/panes/pane__nebula_user_info.scss */
+.pane-nebula-user-info {
+  margin-top: 1.35em;
+}
+/* line 6, ../../sass/panes/pane__nebula_user_info.scss */
+.pane-nebula-user-info .login a {
+  font-size: 18px;
+  padding: 0.5em 1.5em;
+  display: inline-block;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF6698D5', endColorstr='#FF2E64A7');
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2OThkNSIvPjxzdG9wIG9mZnNldD0iNzAlIiBzdG9wLWNvbG9yPSIjNWE5MGQyIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6698d5), color-stop(70%, #5a90d2));
+  background: -moz-linear-gradient(#6698d5, #5a90d2 70%);
+  background: -webkit-linear-gradient(#6698d5, #5a90d2 70%);
+  background: linear-gradient(#6698d5, #5a90d2 70%);
+  -moz-box-shadow: #a2c0e5 0 1px 0 inset;
+  -webkit-box-shadow: #a2c0e5 0 1px 0 inset;
+  box-shadow: #a2c0e5 0 1px 0 inset;
+  border: 1px solid #4682cc;
+  color: #ffffff;
+  text-shadow: #285892 0 -1px 0;
+  font-size: 18px;
+  padding: 4px 8px;
+  display: inline-block;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-left: .5em;
+}
+/* line 15, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.pane-nebula-user-info .login a:hover {
+  text-decoration: none;
+}
+/* line 18, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.pane-nebula-user-info .login a:hover {
+  background-color: #4682cc;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIzJSIgc3RvcC1jb2xvcj0iIzUyOGJkMCIvPjxzdG9wIG9mZnNldD0iNzUlIiBzdG9wLWNvbG9yPSIjNDY4MmNjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(3%, #528bd0), color-stop(75%, #4682cc));
+  background: -moz-linear-gradient(#528bd0 3%, #4682cc 75%);
+  background: -webkit-linear-gradient(#528bd0 3%, #4682cc 75%);
+  background: linear-gradient(#528bd0 3%, #4682cc 75%);
+}
+/* line 21, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.pane-nebula-user-info .login a:active {
+  -moz-box-shadow: #3a7ac9 0 1px 2px inset;
+  -webkit-box-shadow: #3a7ac9 0 1px 2px inset;
+  box-shadow: #3a7ac9 0 1px 2px inset;
+}
+/* line 6, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.pane-nebula-user-info .login a.disabled, .pane-nebula-user-info .login a[disabled] {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+  background: #5a90d2;
+  cursor: default;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/* line 74, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/_sassy-buttons.sass */
+.pane-nebula-user-info .login a::-moz-focus-inner {
+  padding: 0 !important;
+  margin: -1px !important;
+}
+/* line 11, ../../sass/panes/pane__nebula_user_info.scss */
+.pane-nebula-user-info img {
+  position: relative;
+  top: .4em;
+  margin-right: .25em;
+}
