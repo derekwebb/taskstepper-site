@@ -7,7 +7,7 @@
     <a href="/user/{{info.userInfo.user_uid}}" title="View profile of {{info.userInfo.user_name}}">{{info.userInfo.user_name}}</a>
     <!-- ng click here with dropdown of some useful menu items [my account, logout, notifications]-->
     <a href="#" ng-click="info.menuToggle()">[+]</a>
-    <ul ng-show="info.menuShow"><li ng-repeat="link in info.menu"><a href="{{link.href}}">{{link.title}}</a></li></ul>
+    <ul ng-show="info.menuShow"><li ng-repeat="link in info.menu"><a href="{{link.path}}">{{link.title}}</a></li></ul>
   </div>
   
   <!-- Logged out user -->

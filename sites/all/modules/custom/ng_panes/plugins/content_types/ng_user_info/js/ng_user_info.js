@@ -29,12 +29,11 @@
     this.buildLinks = function(links) {
       //console.log(links.tree);
       var l = links.tree;
+      console.log(l);
       var set = {};
       for (var key in l) {
         if (l.hasOwnProperty(key)) {
           set[key] = {};
-          //set[key]['path'] = '';
-          //set[key]['title'] = '';
           set[key]['path'] = l[key].link.path;
           set[key]['title'] = l[key].link.title;
         }
@@ -44,7 +43,7 @@
     
     this.state = this.init();
     if (this.state == 'logged in') {
-      var m = MenuService.get({menu:'main-menu'}, function(m) {
+      var m = MenuService.get({menu:'user-menu'}, function(m) {
         // I dont like it but it requires that I ref. the $scope by the name given on the view side "info" ugh
         $scope.info.buildLinks(m);
       });
