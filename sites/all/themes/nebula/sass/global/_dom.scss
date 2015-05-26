@@ -88,7 +88,7 @@ li.leaf a {
   line-height: $default_vert_unit;
   text-decoration: none;
   outline: none;
-
+  cursor: pointer;
   &:active, &.active { color: $dkblue; }
   &:hover { color: $dkblue; }
 }

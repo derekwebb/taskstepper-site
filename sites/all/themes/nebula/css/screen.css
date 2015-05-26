@@ -549,6 +549,7 @@ li.leaf a {
   line-height: 1.25em;
   text-decoration: none;
   outline: none;
+  cursor: pointer;
 }
 /* line 92, ../sass/global/_dom.scss */
 a:active, a.active,
