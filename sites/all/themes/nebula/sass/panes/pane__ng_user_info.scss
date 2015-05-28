@@ -10,11 +10,12 @@
   margin-top: 1.35em;
   position: relative;
   text-align: right;
-  
-  .login a {
+  z-index: 3;
+
+  a.login {
     @include btn-matte-inset(4px, 18px, $mdblue, darken($mdblue, 3%), $white);
     @include btn-structure(4px 8px, 18px, 4px);
-    margin-left: .5em;
+    margin-left: .35em;
   }
   img {
     position: relative;
@@ -71,7 +72,7 @@
   form {
     background: lighten($ltgray, 7%);
     position: absolute;
-    top: 2em;
+    top: 2.5em;
     right: 0;
     text-align: left;
     padding: 0 .5em .5em;
@@ -79,11 +80,26 @@
     min-width: 8em;
     border: 1px solid $ltgray;
     
-    h4 {
-      margin-top: .4em;
+    h5 {
+      margin-top: .35em;
     }
     
     .form-item {
+      margin: .5em 0;
+      input {
+        
+      }
+      input.input-error {
+        border: 2px solid $ltred;
+        background: lighten($ltred, 25%);
+      }
+    }
+    
+    .alert-danger.message-active {
+      border: 2px solid $ltred;
+      background: lighten($ltred, 25%);
+      font-size: 90%;
+      padding: 5px 3px;
       margin: .5em 0;
     }
   }

@@ -46,7 +46,6 @@ function nebula_preprocess_html(&$vars) {
   drupal_add_js(libraries_get_path('underscore').'/underscore-min.js', array('group' => JS_LIBRARY));
   drupal_add_js(libraries_get_path('backbone').'/backbone-min.js', array('group' => JS_LIBRARY));
   drupal_add_js(libraries_get_path('angularjs').'/angular.min.js', array('group' => JS_LIBRARY));
-  drupal_add_js(libraries_get_path('angularjs').'/angular-resource.min.js', array('group' => JS_LIBRARY));
 }
 
 // Add form id theme hook suggestions.

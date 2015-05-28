@@ -1,11 +1,11 @@
 
 // File should only contain default dom object styles for CoralNexus
 
-//@import "global/buttons";
+@import "global/buttons";
 @import "global/colors";
 @import "global/headers";
 @import "global/fonts";
-//@import "global/gradients";
+@import "global/gradients";
 
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
@@ -259,17 +259,24 @@ dd {
 .html .form-actions {
   margin: ($default_vert_unit / 2) 0;
 }
-
+input {
+  font-size: 1em;
+  font-family: $sans_fonts !important;
+}
+button,
+button.btn,
+input.btn,
 input.form-submit {
-  //@include btn-matte-inset;
-  //@include btn-structure;
-
+  @include btn-matte-inset(4px, 18px, $mdblue, darken($mdblue, 3%), $white);
+  @include btn-structure(4px 8px, 18px, 4px);
+  font-weight: bold;
+  font-size: 1em;
+  font-family: $sans-fonts !important;
   margin: 0 5px 0 0;
 }
 input#edit-delete {
-  margin-left: 2em;
-  //@include btn-matte-inset(0px, 16px, $mdred, $mdred);
-  //@include btn-structure;
+  @include btn-matte-inset(4px, 18px, $mdred, darken($mdred, 3%), $white);
+  @include btn-structure(4px 8px, 18px, 4px);
 }
 .form-textarea {
   font-size: 1em;
@@ -317,7 +324,7 @@ input#edit-delete {
 }
 
 .form-text {
-  font-size: 1.15em;
+  font-size: 1em;
   width: 100%;
   padding: .25em;
   box-sizing: border-box;

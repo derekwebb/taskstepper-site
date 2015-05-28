@@ -31,9 +31,6 @@ function ng_user_info_content_type_render($subtype, $conf, $panel_args) {
   
   $block = new stdClass();
   
-  // Add js files
-  drupal_add_js(drupal_get_path('module', 'ng_panes') . '/plugins/content_types/ng_user_info/js/ng_user_info.js');
-  
   // Add settings
   $user_name = 'Anonymous';
   $user_uid = '0';
@@ -48,7 +45,15 @@ function ng_user_info_content_type_render($subtype, $conf, $panel_args) {
   else {
     $user_image_url = image_style_url('user_thumb_small', image_style_path('user_thumb_small', 'public://ts_logo.png'));
   }
-
+  
+  // --- JS files ---
+  // Add angular js files
+  drupal_add_js(libraries_get_path('angularjs').'/angular-resource.min.js', array('group' => JS_LIBRARY, 'weight' => 1));
+  
+  // Primary app js file
+  drupal_add_js(drupal_get_path('module', 'ng_panes') . '/plugins/content_types/ng_user_info/js/ng_user_info.js');
+  
+  // Required settings  
   drupal_add_js( // add user settings info for the frontend to pick up
     array(
       'ng_panes' => array(
@@ -60,6 +65,7 @@ function ng_user_info_content_type_render($subtype, $conf, $panel_args) {
       )
     ), 
   'setting');
+  // --- end js additions ---
    
   $block->content = theme('ng_user_info_pane', array());
   return $block;

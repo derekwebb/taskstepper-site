@@ -10,9 +10,10 @@
   margin-top: 1.35em;
   position: relative;
   text-align: right;
+  z-index: 3;
 }
-/* line 14, ../../sass/panes/pane__ng_user_info.scss */
-.pane-ng-user-info .login a {
+/* line 15, ../../sass/panes/pane__ng_user_info.scss */
+.pane-ng-user-info a.login {
   font-size: 18px;
   padding: 0.5em 1.5em;
   display: inline-block;
@@ -40,14 +41,14 @@
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  margin-left: .5em;
+  margin-left: .35em;
 }
 /* line 15, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.pane-ng-user-info .login a:hover {
+.pane-ng-user-info a.login:hover {
   text-decoration: none;
 }
 /* line 18, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.pane-ng-user-info .login a:hover {
+.pane-ng-user-info a.login:hover {
   background-color: #4682cc;
   background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIzJSIgc3RvcC1jb2xvcj0iIzUyOGJkMCIvPjxzdG9wIG9mZnNldD0iNzUlIiBzdG9wLWNvbG9yPSIjNDY4MmNjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(3%, #528bd0), color-stop(75%, #4682cc));
@@ -56,13 +57,13 @@
   background: linear-gradient(#528bd0 3%, #4682cc 75%);
 }
 /* line 21, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.pane-ng-user-info .login a:active {
+.pane-ng-user-info a.login:active {
   -moz-box-shadow: #3a7ac9 0 1px 2px inset;
   -webkit-box-shadow: #3a7ac9 0 1px 2px inset;
   box-shadow: #3a7ac9 0 1px 2px inset;
 }
 /* line 6, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
-.pane-ng-user-info .login a.disabled, .pane-ng-user-info .login a[disabled] {
+.pane-ng-user-info a.login.disabled, .pane-ng-user-info a.login[disabled] {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
   background: #5a90d2;
@@ -72,17 +73,17 @@
   box-shadow: none;
 }
 /* line 74, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/_sassy-buttons.sass */
-.pane-ng-user-info .login a::-moz-focus-inner {
+.pane-ng-user-info a.login::-moz-focus-inner {
   padding: 0 !important;
   margin: -1px !important;
 }
-/* line 19, ../../sass/panes/pane__ng_user_info.scss */
+/* line 20, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info img {
   position: relative;
   top: .4em;
   margin-right: .25em;
 }
-/* line 25, ../../sass/panes/pane__ng_user_info.scss */
+/* line 26, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info span.tog-on,
 .pane-ng-user-info span.tog-off {
   display: inline-block;
@@ -97,13 +98,13 @@
   height: 16px;
   width: 16px;
 }
-/* line 36, ../../sass/panes/pane__ng_user_info.scss */
+/* line 37, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info span.tog-off {
   background-position: 0 -160px;
   height: 16px;
   width: 16px;
 }
-/* line 40, ../../sass/panes/pane__ng_user_info.scss */
+/* line 41, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info .user-menu {
   background: #efefef;
   position: absolute;
@@ -115,31 +116,31 @@
   min-width: 8em;
   border: 1px solid #dddddd;
 }
-/* line 51, ../../sass/panes/pane__ng_user_info.scss */
+/* line 52, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info .user-menu li {
   list-style: none;
   list-style-image: none;
   margin: 0;
   border-bottom: 1px solid #dddddd;
 }
-/* line 57, ../../sass/panes/pane__ng_user_info.scss */
+/* line 58, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info .user-menu li.last {
   border-bottom: none;
 }
-/* line 61, ../../sass/panes/pane__ng_user_info.scss */
+/* line 62, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info .user-menu li a {
   display: block;
   padding: 2px 5px;
 }
-/* line 65, ../../sass/panes/pane__ng_user_info.scss */
+/* line 66, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info .user-menu li a:hover {
   background: #e7e7e7;
 }
-/* line 71, ../../sass/panes/pane__ng_user_info.scss */
+/* line 72, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info form {
   background: #efefef;
   position: absolute;
-  top: 2em;
+  top: 2.5em;
   right: 0;
   text-align: left;
   padding: 0 .5em .5em;
@@ -147,11 +148,24 @@
   min-width: 8em;
   border: 1px solid #dddddd;
 }
-/* line 82, ../../sass/panes/pane__ng_user_info.scss */
-.pane-ng-user-info form h4 {
-  margin-top: .4em;
+/* line 83, ../../sass/panes/pane__ng_user_info.scss */
+.pane-ng-user-info form h5 {
+  margin-top: .35em;
 }
-/* line 86, ../../sass/panes/pane__ng_user_info.scss */
+/* line 87, ../../sass/panes/pane__ng_user_info.scss */
 .pane-ng-user-info form .form-item {
+  margin: .5em 0;
+}
+/* line 92, ../../sass/panes/pane__ng_user_info.scss */
+.pane-ng-user-info form .form-item input.input-error {
+  border: 2px solid #d9837b;
+  background: #f5e0de;
+}
+/* line 98, ../../sass/panes/pane__ng_user_info.scss */
+.pane-ng-user-info form .alert-danger.message-active {
+  border: 2px solid #d9837b;
+  background: #f5e0de;
+  font-size: 90%;
+  padding: 5px 3px;
   margin: .5em 0;
 }

@@ -5,7 +5,7 @@
   var userInfoApp = angular.module('UserInfoPane', ['ngResource']);
   
   // Controller
-  userInfoApp.controller('UserInfoController', ['$scope', 'MenuService', 'LoginService', function($scope, MenuService, LoginService) {
+  userInfoApp.controller('UserInfoController', ['$scope', 'MenuService', 'LoginService', 'RegisterService', function($scope, MenuService, LoginService, RegisterService) {
     
     // Initialize the controller
     this.init = function() {
@@ -95,8 +95,8 @@
     // Call the login factory service
     this.login = function() {
       var data = {
-        username: this.username,
-        password: this.password
+        username: this.loginUsername,
+        password: this.loginPassword
       };
       var login = LoginService.save({}, data, 
         function(data) {
@@ -104,10 +104,45 @@
           document.location.reload(true);
         },
         function(reply) {
-          $scope.info.errorMessage = reply.statusText;
+          $scope.info.loginError = true;
+          $scope.info.loginErrorMessage = reply.statusText;
         }  
       );
-    };   
+    };
+    
+    // Call the login factory service
+    this.register = function() {
+      var data = {
+        name: this.regUsername,
+        mail: this.regEmail,
+        pass: this.regPassword
+      };
+      var register = RegisterService.save({}, data, 
+        function(data) {
+          // possibly do stuff with result...
+          document.location.reload(true);
+        },
+        function(reply) {
+          // Reset errors in prep for this round.
+          $scope.info.registerNameError = false;
+          $scope.info.registerEmailError = false;
+
+          var errors = reply.data.form_errors;
+          for (var error in errors) {
+            if (error === 'name') {
+              $scope.info.registerNameError = true;
+            }
+            if (error === 'mail') {
+              $scope.info.registerEmailError = true;
+            }
+            // Email validation should go here...
+            // See also password policy.
+          }
+          $scope.info.registerError = true;
+          $scope.info.regErrorMessage = reply.statusText;
+        }  
+      );
+    };
   }]);
   
   // Get the links for the logged in user
@@ -118,6 +153,11 @@
   // Login factory service
   userInfoApp.factory('LoginService', function($resource) {
     return $resource('/auth-service/user/login');
+  });
+  
+  // Register factory service
+  userInfoApp.factory('RegisterService', function($resource) {
+    return $resource('/auth-service/user/register');
   });
   
   // Directives for login and register

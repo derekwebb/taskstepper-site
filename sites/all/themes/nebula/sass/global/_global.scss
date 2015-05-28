@@ -11,16 +11,129 @@
 @import "compass/utilities/general/clearfix";
 
 //@import 'global/arrows';
-//@import 'global/buttons';
+@import 'global/buttons';
 @import 'global/colors';
 @import 'global/fonts';
-//@import 'global/gradients';
-//@import 'global/grid_mix';
+@import 'global/gradients';
+@import 'global/grid_mix';
 @import 'global/site_vars';
-//@import 'global/icons';
+@import 'global/icons';
 
-body {
-  @include font;
+
+
+
+// Primary and secondary tabs
+.pane-page-tabs {
+  padding: 0;
+  margin-top: -8px;
+  margin-bottom: 1em;
+  position: relative;
+  z-index: 2;
+  @include pie-clearfix;
+
+  ul {
+    float: right;
+    margin: 0 0 1em;
+    li {
+      //line-height: 1em;
+      margin: 0 .15em 0 0;
+
+      a {
+        padding: 0 .5em;
+        margin: 0;
+        white-space: nowrap;
+      }
+    }
+  }
+  ul.primary {
+    border: none;
+    white-space: normal;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    li {
+      a {
+        font-size: 90%;
+        border-style: none solid solid solid;
+        border-width: 0px 1px 2px 1px;
+        border-color: transparent darken($mdblue, 5%) darken($ltblue, 14%) $ltblue;
+        background: $ltorange;
+        color: $white;
+        margin: 0;
+
+        @include box-shadow(rgba(0, 0, 0, 0.35) 2px 0px 3px);
+        @include linear-v-gradient(desaturate(darken($ltblue, 20%), 7%), saturate(darken($ltblue, 25%), 15%));
+        @include opacity(.75);
+        @include border-bottom-radius(5px);
+
+        &:hover {
+          border-color: transparent lighten($mdblue, 5%) darken($ltblue,10%) $ltblue;
+          @include opacity(1);
+        }
+
+        &:active,
+        &.active {
+          @include linear-v-gradient(desaturate(darken($ltblue, 30%), 7%), saturate(darken($ltblue, 35%), 15%));
+          @include box-shadow(rgba(0, 0, 0, 0.5) 2px 0px 2px);
+          @include opacity(.85);
+        }
+
+      }
+    }
+  }
+  ul.secondary {
+    border-bottom: none;
+    clear: both;
+    float: none;
+    padding: 0 0 ($default_vert_unit / 2) 0;
+    white-space: normal;
+
+    li {
+      border-right: none;
+      float: right;
+      margin-right: 0;
+      padding: 0 0 0 5px;
+
+      a {
+        @include btn-matte-inset(3px, 12px, darken($silver, 5%), darken($silver, 15%), $white);
+        @include btn-structure(2px 5px, 12px, 3px);
+        @include box-shadow(rgba(0, 0, 0, 0.25) 2px 1px 3px);
+
+        &:hover {}
+
+        &:active,
+        &.active {
+          @include btn-matte-inset(3px, 12px, lighten($silver, 10%), darken($silver, 1%), $white);
+          @include btn-structure(2px 5px, 12px, 3px);
+          @include box-shadow(rgba(0, 0, 0, 0.25) 2px 1px 3px);
+          text-shadow: none;
+          color: $black;
+        }
+      }
+    }
+  }
 }
 
-
+@media screen and (max-width: $desktopw) {
+  .pane-page-tabs {
+    ul.primary {
+      margin-bottom: .5em;
+      li {
+        a {
+          margin: 0;
+          line-height: 1.75em;
+          @include border-radius(5px);
+        }
+      }
+    }
+    ul.secondary {
+      li {
+        a {
+          margin: 0;
+          @include border-radius(5px);
+        }
+      }
+    }
+  }
+}
