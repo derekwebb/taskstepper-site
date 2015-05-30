@@ -1,0 +1,8 @@
+name = NG Blocks
+description = Provides custom ng blocks for TaskStepper 
+package = "Other"
+core = 7.x 
+
+dependencies[] = block
+
+files[] = includes/ng_blocks.preprocess.inc

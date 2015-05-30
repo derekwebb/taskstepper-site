@@ -1,0 +1,57 @@
+<?php
+
+// Load includes
+module_load_include('inc', 'ng_blocks', 'includes/ng_blocks.preprocess');
+
+// Implements hook_block_info()
+function ng_blocks_block_info() {
+  $blocks = array();
+  $blocks['ng_header'] = array(
+    'info' => t('NG Header block'),
+  );
+  return $blocks;
+}
+
+// Implements hook_block_view()
+function ng_blocks_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'ng_header':
+      $block['subject'] = t('NG Header');
+      $block['content'] = theme('ng_header_content');
+      break;
+  }
+  return $block;
+}
+
+// Implements hook_theme()
+function ng_blocks_theme() {
+  $path = drupal_get_path('module', 'ng_blocks') . '/templates';
+  return array(
+    // Main header block
+    'ng_header_content' => array(
+      'path' => $path,
+      'template' => 'ng-header-content',
+      'variables' => array(
+        'search' => NULL,
+        'logo' => NULL,
+        'site_name' => NULL
+      )
+    ),
+    // Primary links template that lives in the header
+    'ng_header_primary_links' => array(
+      'path' => $path,
+      'template' => 'ng-header-primary-links',
+      'variables' => array()
+    ),
+    
+    // Header user info
+    'ng_header_user_info' => array(
+      'path' => $path,
+      'template' => 'ng-header-user-info',
+      'variables' => array()
+    )
+  );
+}
+
+
