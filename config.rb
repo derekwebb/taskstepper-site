@@ -4,17 +4,17 @@
 http_path = "/"
 
 # Paths to the base theme directories.
-css_dir = "sites/all/themes/nebula/css"
-sass_dir = "sites/all/themes/nebula/sass"
-javascripts_dir = "sites/all/nebula/mosaic/js"
+css_dir = "sites/all/themes/ngTheme/css"
+sass_dir = "sites/all/themes/ngTheme/sass"
+javascripts_dir = "sites/all/ngTheme/js"
 project_type = :stand_alone
 
-images_path = "sites/all/themes/nebula/assets"
+images_path = "sites/all/themes/ngTheme/assets"
 
 # Images are located in the mosaic theme
-icons_dir  = "sites/all/themes/nebula/assets/icons"
-#vtiles_dir = "sites/all/themes/nebula/assets/vtiles"
-#htiles_dir = "sites/all/themes/nebula/assets/htiles"
+icons_dir  = "sites/all/themes/ngTheme/assets/icons"
+#vtiles_dir = "sites/all/themes/ngTheme/assets/vtiles"
+#htiles_dir = "sites/all/themes/ngTheme/assets/htiles"
 
 require 'sassy-buttons'
 
