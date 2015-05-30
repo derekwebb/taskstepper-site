@@ -1,0 +1,32 @@
+
+// Should only contain collections of fonts and 
+//  font related mixins and styles.
+
+// Vertical rythm
+$default_vert_unit: 1.25em; // 22.5px (18px * 1.25em)
+
+$sans_fonts: 'Open Sans', sans-serif;
+$serif_fonts: "Lora", "Times New Roman", Times, serif;
+$mono_fonts: monospace, "Courier New", Courier;
+
+// Font sizes
+@mixin font(
+  $size: 100%, 
+  $weight: 'normal', 
+  $style: 'default', 
+  $family: $sans_fonts, 
+  $ln-height-adj: 'false', 
+  $ln-height: $default_vert_unit
+) {
+
+  font-size: $size;
+  font-weight: $weight;
+  font-style: $style;
+  font-family: $family;
+  
+  @if $ln-height-adj != 'false' {
+    line-height: $ln-height;
+  }
+}
+
+

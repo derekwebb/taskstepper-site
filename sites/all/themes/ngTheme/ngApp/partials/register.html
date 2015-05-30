@@ -1,0 +1,8 @@
+<form class="form-register" ng-click="info.stopPropagation($event)">
+  <h5>Register</h5>
+  <div class="alert alert-danger alert-dismissible" role="alert" ng-show="info.regErrorMessage" ng-class="{'message-active':info.registerError}">{{info.regErrorMessage}}</div>
+  <div class="form-item"><input type="text" class="form-control" name="username" placeholder="Username" autocorrect="off" autocapitalize="off" required="" autofocus="" ng-model="info.regUsername" ng-class="{'input-error':info.registerNameError}"/></div>
+  <div class="form-item"><input type="text" class="form-control" name="email" placeholder="Email" required="" autofocus="" ng-model="info.regEmail" ng-class="{'input-error':info.registerEmailError}"/></div>
+  <div class="form-item"><input type="password" class="form-control" name="password" placeholder="Password" required="" ng-model="info.regPassword" ng-class="{'input-error':info.registerPassError}"/></div>
+  <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="info.register()">Register</button>
+</form>

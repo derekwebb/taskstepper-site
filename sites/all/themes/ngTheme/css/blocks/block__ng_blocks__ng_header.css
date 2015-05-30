@@ -1,0 +1,294 @@
+/* line 72, icons/*.png */
+.icons-sprite, .block-ng-blocks-ng-header .user-info span.tog-on,
+.block-ng-blocks-ng-header .user-info span.tog-off {
+  background-image: url('/images/icons-s2443e5d0a2.png');
+  background-repeat: no-repeat;
+}
+
+/* line 12, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header {
+  background: url("../../assets/images/header_tile.jpg") bottom left repeat-x;
+}
+/* line 14, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .content {
+  width: 80%;
+  max-width: 1024px;
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/compass-core-1.0.1/stylesheets/compass/utilities/general/_clearfix.scss */
+.block-ng-blocks-ng-header .content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 19, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header #logo {
+  float: left;
+  margin-top: 1.45em;
+  margin-bottom: 1.2em;
+}
+/* line 25, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .site-name.cont {
+  float: left;
+  margin-top: 1em;
+  margin-left: .5em;
+}
+/* line 29, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .site-name.cont .first {
+  font-size: 2.5em;
+  font-family: "Lora", "Times New Roman", Times, serif;
+  font-weight: normal;
+  letter-spacing: 2px;
+  display: block;
+  color: #000000;
+}
+/* line 37, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .site-name.cont .last {
+  font-size: 1.33em;
+  line-height: 1.5em;
+  font-weight: 600;
+  font-family: "Lora", "Times New Roman", Times, serif;
+  font-weight: normal;
+  color: #777777;
+  letter-spacing: 1.5px;
+  margin-top: -6px;
+}
+/* line 47, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .primary-links {
+  margin-top: 1.75em;
+  margin-left: 1.5em;
+  float: left;
+}
+/* line 52, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .primary-links ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 56, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .primary-links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+/* line 62, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .primary-links ul li a {
+  color: #777777;
+}
+/* line 65, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .primary-links ul li a:hover {
+  color: #515151;
+}
+/* line 69, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .primary-links ul li .divider {
+  margin: 0 5px 0 3px;
+  color: #dddddd;
+}
+/* line 77, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .search-form {
+  position: relative;
+  margin-top: 1.75em;
+  margin-left: 1em;
+  float: left;
+  font-size: 90%;
+}
+/* line 83, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .search-form form {
+  padding: 0;
+  margin: 0;
+}
+/* line 88, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .search-form input.form-text {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  border: 1px solid #cbcbcb;
+  background: #f7f7f7;
+  padding-left: .5em;
+  padding-right: 1.5em;
+  width: 10em;
+}
+/* line 97, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .search-form input.form-submit {
+  position: absolute;
+  top: 4px;
+  right: -8px;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/* line 108, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .search-form .container-inline {
+  float: left;
+}
+/* line 113, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info {
+  float: right;
+  margin-top: 1.35em;
+  position: relative;
+  text-align: right;
+  z-index: 3;
+}
+/* line 120, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info a.login {
+  font-size: 18px;
+  padding: 0.5em 1.5em;
+  display: inline-block;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF6698D5', endColorstr='#FF2E64A7');
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2OThkNSIvPjxzdG9wIG9mZnNldD0iNzAlIiBzdG9wLWNvbG9yPSIjNWE5MGQyIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6698d5), color-stop(70%, #5a90d2));
+  background: -moz-linear-gradient(#6698d5, #5a90d2 70%);
+  background: -webkit-linear-gradient(#6698d5, #5a90d2 70%);
+  background: linear-gradient(#6698d5, #5a90d2 70%);
+  -moz-box-shadow: #a2c0e5 0 1px 0 inset;
+  -webkit-box-shadow: #a2c0e5 0 1px 0 inset;
+  box-shadow: #a2c0e5 0 1px 0 inset;
+  border: 1px solid #4682cc;
+  color: #ffffff;
+  text-shadow: #285892 0 -1px 0;
+  font-size: 18px;
+  padding: 4px 8px;
+  display: inline-block;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-left: .35em;
+}
+/* line 15, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.block-ng-blocks-ng-header .user-info a.login:hover {
+  text-decoration: none;
+}
+/* line 18, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.block-ng-blocks-ng-header .user-info a.login:hover {
+  background-color: #4682cc;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIzJSIgc3RvcC1jb2xvcj0iIzUyOGJkMCIvPjxzdG9wIG9mZnNldD0iNzUlIiBzdG9wLWNvbG9yPSIjNDY4MmNjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(3%, #528bd0), color-stop(75%, #4682cc));
+  background: -moz-linear-gradient(#528bd0 3%, #4682cc 75%);
+  background: -webkit-linear-gradient(#528bd0 3%, #4682cc 75%);
+  background: linear-gradient(#528bd0 3%, #4682cc 75%);
+}
+/* line 21, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.block-ng-blocks-ng-header .user-info a.login:active {
+  -moz-box-shadow: #3a7ac9 0 1px 2px inset;
+  -webkit-box-shadow: #3a7ac9 0 1px 2px inset;
+  box-shadow: #3a7ac9 0 1px 2px inset;
+}
+/* line 6, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/sassy-buttons/_sassy-button-pseudo-states.sass */
+.block-ng-blocks-ng-header .user-info a.login.disabled, .block-ng-blocks-ng-header .user-info a.login[disabled] {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+  background: #5a90d2;
+  cursor: default;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/* line 74, ../../../../../../../../../../../../../usr/local/rvm/gems/ruby-2.1.5/gems/sassy-buttons-0.2.6/stylesheets/_sassy-buttons.sass */
+.block-ng-blocks-ng-header .user-info a.login::-moz-focus-inner {
+  padding: 0 !important;
+  margin: -1px !important;
+}
+/* line 125, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info .user-img {
+  position: relative;
+  top: .4em;
+  margin-right: .25em;
+}
+/* line 131, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info span.tog-on,
+.block-ng-blocks-ng-header .user-info span.tog-off {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-position: 0 -226px;
+  height: 16px;
+  width: 16px;
+}
+/* line 142, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info span.tog-off {
+  background-position: 0 -160px;
+  height: 16px;
+  width: 16px;
+}
+/* line 146, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info .user-menu {
+  background: #efefef;
+  position: absolute;
+  top: 2.5em;
+  right: 0;
+  text-align: left;
+  padding: 0px;
+  margin: 0;
+  min-width: 8em;
+  border: 1px solid #dddddd;
+}
+/* line 157, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info .user-menu li {
+  list-style: none;
+  list-style-image: none;
+  margin: 0;
+  border-bottom: 1px solid #dddddd;
+}
+/* line 163, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info .user-menu li.last {
+  border-bottom: none;
+}
+/* line 167, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info .user-menu li a {
+  display: block;
+  padding: 2px 5px;
+}
+/* line 171, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info .user-menu li a:hover {
+  background: #e7e7e7;
+}
+/* line 177, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info form {
+  background: #efefef;
+  position: absolute;
+  top: 2.5em;
+  right: 0;
+  text-align: left;
+  padding: 0 .5em .5em;
+  margin: 0;
+  min-width: 8em;
+  border: 1px solid #dddddd;
+}
+/* line 188, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info form h5 {
+  margin-top: .35em;
+}
+/* line 192, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info form .form-item {
+  margin: .5em 0;
+}
+/* line 197, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info form .form-item input.input-error {
+  border: 2px solid #d9837b;
+  background: #f5e0de;
+}
+/* line 203, ../../sass/blocks/block__ng_blocks__ng_header.scss */
+.block-ng-blocks-ng-header .user-info form .alert-danger.message-active {
+  border: 2px solid #d9837b;
+  background: #f5e0de;
+  font-size: 90%;
+  padding: 5px 3px;
+  margin: .5em 0;
+}

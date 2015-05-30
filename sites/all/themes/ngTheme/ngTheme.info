@@ -1,0 +1,43 @@
+
+name        = ngTheme
+description = A fluid grid AngularJS oriented theme for use with Panels and Panelizer
+package     = Themes
+version     = VERSION
+core        = 7.x
+
+; - Stylesheets
+stylesheets[all][]   = css/screen.css
+stylesheets[print][] = css/print.css
+
+; - Global scripts
+; -- Libraries
+;scripts[] = js/lib/prettify/src/prettify.js
+
+; -- ngApp
+
+; App definition
+scripts[] = ngApp/app.js
+
+; Services
+scripts[] = ngApp/services/menu_service.js
+scripts[] = ngApp/services/login_service.js
+scripts[] = ngApp/services/register_service.js
+scripts[] = ngApp/services/toolkit_service.js
+
+; Directives
+scripts[] = ngApp/directives/user_directives.js
+
+; Controllers
+scripts[] = ngApp/controllers/header_controller.js
+scripts[] = ngApp/controllers/user_info_controller.js
+
+; -- end ngApp
+
+
+; - Page manager
+api[page_manager][pages_default][version] = 1
+api[page_manager][pages_default][path]    = pages
+
+
+; - Settings
+;settings[mosaic_setting] = "some setting"

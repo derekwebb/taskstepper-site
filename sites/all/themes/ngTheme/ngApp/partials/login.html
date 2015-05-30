@@ -1,0 +1,7 @@
+<form class="form-signin" ng-click="info.stopPropagation($event)">
+  <h5>Login</h5>
+  <div class="alert alert-danger alert-dismissible" role="alert" ng-show="info.loginErrorMessage" ng-class="{'message-active':info.loginError}">{{info.loginErrorMessage}}</div>
+  <div class="form-item"><input type="text" class="form-control" name="username" placeholder="Username" autocorrect="off" autocapitalize="off" required="" autofocus="" ng-model="info.loginUsername" ng-class="{'input-error':info.loginError}"/></div>
+  <div class="form-item"><input type="password" class="form-control" name="password" placeholder="Password" required="" ng-model="info.loginPassword" ng-class="{'input-error':info.loginError}"/></div>
+  <button class="btn btn-lg btn-success btn-block" type="submit" ng-click="info.login()">Login</button>
+</form>
