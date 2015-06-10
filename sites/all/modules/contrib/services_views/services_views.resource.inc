@@ -28,12 +28,11 @@
 function services_views_retrieve($view_name, $display_id = 'default', $args = array(), $offset = 0, $limit = -1, $return_type = FALSE, $filters = array()) {
   $result = array();
   $view = views_get_view($view_name);
-
   // Put all arguments and filters and then execute.
+  watchdog('services_views args resource.inc 32', print_r(func_get_args(),true));
   $view->set_arguments($args, FALSE);
   $view->set_exposed_input($filters);
   $view->set_offset($offset);
-
   // Support for Views 2
   if (method_exists($view, 'set_use_pager')) {
     // If offset is set we can't have a user pager.
@@ -60,6 +59,7 @@ function services_views_retrieve($view_name, $display_id = 'default', $args = ar
     $result = $view->result;
 
     $row_plugin = $view->display_handler->get_option('row_plugin');
+
     // If row plugin is node, then we should load each node
     if ($row_plugin == 'node') {
       $nodes = array();
@@ -86,6 +86,7 @@ function services_views_retrieve($view_name, $display_id = 'default', $args = ar
         }
         $items[] = $item;
       }
+
       if ($items) {
         $result = $items;
       }
@@ -102,20 +103,93 @@ function services_views_retrieve($view_name, $display_id = 'default', $args = ar
   }
   return $result;
 }
+/*
+ *  +    // Pager From / To: get a subset of nodes from the view results
+    +    // Offset: starting point (position) of the subset of nodes
+    +    if (!empty($_REQUEST['offset'])) {
+    +      $offset = (int) $_REQUEST['offset'];
+    +      if ($offset >= 0) {
+    +        $view->set_offset($offset);
+    +      }
+    +    }
+    +    // Limit: is the number of nodes to return
+    +    if (!empty($_REQUEST['limit'])) {
+    +      $limit = (int) $_REQUEST['limit'];
+    +      if ($limit >= 0) {
+    +        $view->set_items_per_page($limit);
+    +      }
+    +    }
+    +    // /Pager From / To: get a subset of nodes from the view results
+ */
 
 /**
  * Execute a view and return results.
  */
 function services_views_execute_view($view_info, $view = NULL, $display_id = NULL) {
+  //watchdog('services_views exec Request', print_r($_REQUEST, true)); 
+  
+  $args = $get_args = $view_args = $arg_order = array();
+  $arg_count = 0;
+  $search = 0; // var to contain array loc of arg data from view settings
+  
   if (!empty($view_info)) {
     $view_name = $view_info['view_name'];
     $display_id = $view_info['display_id'];
-
-    $args = array();
-
     $view = views_get_view($view_name);
-    $view->set_arguments($args);
+    
+    $args = $view_info['args']; // self-contained args
+
+    if (!empty($_REQUEST['filter_args'])) {
+      $default_display = $view->display['default'];
+      $selected_display = $view->display[$display_id];
+      
+      // Are the arguments default?
+      if (!$selected_display->display_options['defaults']['arguments']) {
+        $view_args = $selected_display->display_options['arguments'];
+      }
+      // use args from default display
+      else { 
+        $view_args = $default_display->display_options['arguments'];
+      }
+      
+      $arg_count = count($view_args);
+      $get_args = array_fill(0, $arg_count, null); // fill the args to pass to views with null to start with
+      
+      foreach ($view_args as $id => $arg) {
+        $arg_order[] = $id;
+      }
+
+      $request_args = $_REQUEST['filter_args']; // todo security check!
+      foreach($request_args as $index => $arg_str) {
+        $arg = explode('=', $arg_str);
+        $search = array_search($arg[0], $arg_order);
+        $get_args[$search] = $arg[1];
+      }
+      $args = $get_args;
+    }
+    
+    if (!empty($_REQUEST['offset'])) {
+      $offset = (int) $_REQUEST['offset'];
+      if ($offset >= 0) {
+        $view->set_offset($offset);
+      }
+    }
+    // Limit: is the number of nodes to return
+    if (!empty($_REQUEST['limit'])) {
+      $limit = (int) $_REQUEST['limit'];
+      if ($limit >= 0) {
+        $view->set_items_per_page($limit);
+      }
+    }
+
+    if (isset($args) && !empty($args)) {
+      $view->set_arguments($args);
+      $view->execute_display($display_id, $args);
+    }
+    
   }
+  
+  
 
   // Avoid translation of the field labels.
   $view->localization_plugin = views_get_plugin('localization', 'none');

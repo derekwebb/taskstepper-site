@@ -182,6 +182,10 @@ function services_views_views_plugins() {
 function services_views_services_request_preprocess_alter($controller, &$args, $options) {
   if (isset($controller['view info'])) {
     array_unshift($args, $controller['view info']);
+    $args[0]['args'] = array();
+    if (!empty($_GET['args'])) {
+      $args[0]['args'] = $_GET['args'];
+    }
   }
 }
 
@@ -259,8 +263,21 @@ function services_views_field_formatter_view($entity_type, $entity, $field, $ins
   if ($display['type'] == 'services') {
     foreach ($items as $delta => $item) {
       $element[$delta] = $item;
+      $key = key($item); //https://www.drupal.org/node/2289431 #4
+      $element[$delta][$key] = array(
+        '#type' => 'markup',
+        '#markup' => $item[$key],
+      );
     }
   }
 
   return $element;
 }
+
+/*
+Array (
+  [0] => Array ( 
+    [view_name] => guides 
+    [display_id] => guide_list 
+  ) [display_id] => default [args] => Array ( ) [offset] => 0 [limit] => 1 [format_output] => [filters] => Array ( ) )
+*/
