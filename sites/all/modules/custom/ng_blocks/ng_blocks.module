@@ -9,6 +9,9 @@ function ng_blocks_block_info() {
   $blocks['ng_header'] = array(
     'info' => t('NG Header block'),
   );
+  $blocks['ng_guide_listing'] = array(
+    'info' => t('NG Guide listing'),
+  );
   return $blocks;
 }
 
@@ -19,6 +22,11 @@ function ng_blocks_block_view($delta = '') {
     case 'ng_header':
       $block['subject'] = t('NG Header');
       $block['content'] = theme('ng_header_content');
+      break;
+      
+    case 'ng_guide_listing':
+      $block['subject'] = t('NG Guide listing');
+      $block['content'] = theme('ng_guide_listing_content');
       break;
   }
   return $block;
@@ -38,6 +46,7 @@ function ng_blocks_theme() {
         'site_name' => NULL
       )
     ),
+    
     // Primary links template that lives in the header
     'ng_header_primary_links' => array(
       'path' => $path,
@@ -50,8 +59,30 @@ function ng_blocks_theme() {
       'path' => $path,
       'template' => 'ng-header-user-info',
       'variables' => array()
+    ),
+    
+    // Guide listing content - retrieves content from services views 
+    'ng_guide_listing_content' => array(
+      'path' => $path,
+      'template' => 'ng-guide-listing-content',
+      'variables' => array()
     )
   );
 }
 
 
+function ng_blocks_views_post_execute(&$view) {
+  //dpm($view->query);
+}
+
+
+function ng_blocks_services_views_execute_view_alter(&$output, $view) {
+  //watchdog('services views view exec alter', '<pre>'.print_r($view->query, true).'</pre>');
+  $paged_output = array(
+    'results' => $output,
+    'limit' => $view->query->limit,
+    'current_page' => $view->query->pager->current_page,
+    'total_rows' => $view->total_rows,
+  );
+  $output = $paged_output;
+}
