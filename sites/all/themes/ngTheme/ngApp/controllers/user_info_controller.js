@@ -75,8 +75,7 @@ var userInfoController = angular.module('app')
   
   // Apply last class to menu links
   this.isLast = function(check) {
-    var cssClass = check ? 'last' : null;
-    return cssClass;
+    return ToolKit.isLast(check);
   };
   
   // Call the login factory service
