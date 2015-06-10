@@ -5,7 +5,7 @@ angular.module('app').factory('ToolKit', function() {
   
   // Is this the last item? Return last class
   toolkit.isLast = function(check, cls) {
-    if (check === undefined) check = false;
+    if (cls === undefined) cls = 'last';
     var cssClass = check ? cls : null;
     return cssClass;
   };
