@@ -13,3 +13,4 @@ function ngTheme_form_search_block_form_alter(&$form, &$form_state) {
   $form['actions']['submit']['#attributes']['onmouseover'] = "this.src='" . base_path() . drupal_get_path('theme', 'ngTheme') . "/assets/images/search-on.png'";
   $form['actions']['submit']['#attributes']['onmouseout'] = "this.src='" . base_path() . drupal_get_path('theme', 'ngTheme') . "/assets/images/search.png'";
 }
+
