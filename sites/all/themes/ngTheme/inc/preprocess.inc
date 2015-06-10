@@ -47,6 +47,7 @@ function ngTheme_preprocess_html(&$vars) {
   drupal_add_js(libraries_get_path('backbone').'/backbone-min.js', array('group' => JS_LIBRARY));
   drupal_add_js(libraries_get_path('angularjs').'/angular.min.js', array('group' => JS_LIBRARY));
   drupal_add_js(libraries_get_path('angularjs').'/angular-resource.min.js', array('group' => JS_LIBRARY, 'weight' => 1));
+  drupal_add_js(libraries_get_path('angularjs').'/angular-sanitize.min.js', array('group' => JS_LIBRARY, 'weight' => 2));
   
   // Settings ---
   // Compile settings
@@ -106,6 +107,7 @@ function ngTheme_preprocess_block(&$vars) {
     if (file_exists($path.'/js/blocks/'.$suggestion.'.js'))   drupal_add_js($path.'/js/blocks/'.$suggestion.'.js', array('group' => JS_THEME));
   }
 }
+
 
 // Compile a default user picture and link
 function ngTheme_preprocess_user_picture(&$vars) {
@@ -167,7 +169,9 @@ function ngTheme_compile_theme_logo() {
   return $content;
 }
 
+// Get TS site name in the right format 
 function ngTheme_compile_site_name() {
   $name = '<span class="site-name cont"><span class="first">'.t('task').'</span><span class="last">'.t('stepper').'</span></span>';
   return l($name, '<front>', array('html'=>true));
 }
+

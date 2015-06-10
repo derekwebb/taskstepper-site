@@ -22,6 +22,7 @@ scripts[] = ngApp/app.js
 scripts[] = ngApp/services/menu_service.js
 scripts[] = ngApp/services/login_service.js
 scripts[] = ngApp/services/register_service.js
+scripts[] = ngApp/services/view_service.js
 scripts[] = ngApp/services/toolkit_service.js
 
 ; Directives
@@ -30,6 +31,7 @@ scripts[] = ngApp/directives/user_directives.js
 ; Controllers
 scripts[] = ngApp/controllers/header_controller.js
 scripts[] = ngApp/controllers/user_info_controller.js
+scripts[] = ngApp/controllers/guide_list_controller.js
 
 ; -- end ngApp
 
