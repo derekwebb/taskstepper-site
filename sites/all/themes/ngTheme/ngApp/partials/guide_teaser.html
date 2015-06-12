@@ -1,5 +1,8 @@
 <div ng-controller="guideListController as guideList">
-  <h2 class="guide-teaser-title"><a href="{{guide.path}}">{{guide.node_title}}</a></h2>
+  <div class="clearfix">
+    <h2 class="guide-teaser-title left"><a href="{{guide.path}}">{{guide.node_title}}</a></h2>
+    <div class="author-name right"><a href="user/{{guide.node_uid}}">{{guide.users_node_name}}</a></div>
+  </div>
   <div class="guide-teaser-intro" ng-html-compile="guide.Introduction" ng-show="guideList.showIndex[$index]">
     {{guide.Introduction}}
   </div>

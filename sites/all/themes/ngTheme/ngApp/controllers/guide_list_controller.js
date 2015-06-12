@@ -20,7 +20,7 @@ var guideListController = angular.module('app')
 
   // Fetch the guide list view from services
   var data = ViewService.get({view_endpoint:'guide-service', view_path: 'guide-list'}, function(data) {
-    //console.log(data);
+    console.log(data);
     
     // Update/process results 
     for (var row in data.results) {
