@@ -11,15 +11,13 @@ var guideListController = angular.module('app')
   // Storage for which rows are showing full vs. short intros
   this.showIndex = [];
   
-  this.showFull = false;
-  this.showFullClick = function() {
-    alert('Showfull');
+
+  // Handle setting showIndex
+  this.itemClick = function(index, bool) {
+    $scope.guideList.showIndex[index] = bool;
   };
   
-  this.trustIntro = function(code) {
-    return $sce.trustAsHtml(code);
-  };
-  
+
   // Fetch the guide list view from services
   var data = ViewService.get({view_endpoint:'guide-service', view_path: 'guide-list'}, function(data) {
     //console.log(data);
@@ -41,7 +39,7 @@ var guideListController = angular.module('app')
   // Add a read less anchor tag at the end of the main intro
   this.updateIntro = function(row, row_index) {
     var intro = row['Introduction'].trim();
-    var link = ' <a class="less" ng-click="guideList.showFullClick()">Less</a>';
+    var link = ' <a class="less" ng-click="guideList.itemClick($index, false)">Less</a>';
     
     if ($scope.guideList.rowIndex[row_index]) { // only apply Less link if needed
       var index = intro.length - 1;
@@ -72,7 +70,7 @@ var guideListController = angular.module('app')
   
   // Truncate the long intro into a shorter length blurb
   this.getShortIntro = function(row, row_index) {
-    var link = ' <a class="more moreish" ng-click="guideList.showFullClick()">Read&nbsp;on</a>';
+    var link = ' <a class="more moreish" ng-click="guideList.itemClick($index, true)">Read&nbsp;on</a>';
     
     // Truncate if necc.
     var short_intro = jQuery.truncate(row['Introduction'], {
@@ -89,7 +87,9 @@ var guideListController = angular.module('app')
     else { // no more link
       $scope.guideList.rowIndex[row_index] = false;
     }
-    
+
+    // Set up the showIndex
+    $scope.guideList.showIndex[row_index] = false;
     return short_intro;
   };
 }]);
