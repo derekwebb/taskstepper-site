@@ -35,17 +35,45 @@ class views_plugin_display_services extends views_plugin_display {
 
     // Map fields.
     $result = array();
-    foreach ($this->view->result as $item) {
+    foreach ($this->view->field as $field) {
+      $field->pre_render($this->view->result);
+    }
+    foreach ($this->view->result as $row_index => $item) {
       $new_item = new stdClass();
       foreach ($this->view->field as $field) {
+        $label = '';
+        $value = '';
+
         if (isset($item->{$field->field_alias})) {
           // Make sure new keys are alphanumerical, underscore and dash.
           if (!empty($field->options['label']) && preg_match('/^[0-9a-z_-]*$/', $field->options['label'])) {
-            $new_item->{$field->options['label']} = $item->{$field->field_alias};
+            $label = $field->options['label'];
           }
           else {
-            $new_item->{$field->field_alias} = $item->{$field->field_alias};
+            $label = $field->field_alias;
           }
+          $value = $item->{$field->field_alias};
+          //dpm($item->{$field->field_alias});
+          //$value = $field->theme($item);
+        } 
+        
+        elseif ($field->field === 'path') {
+          // This applies to path values, possibly other things.
+          if (!empty($field->options['label']) && preg_match('/^[0-9a-z_-]*$/', $field->options['label'])) {
+            $label = $field->options['label'];
+          } else {
+            $label = $field->real_field;
+          }
+          $content_item = current($field->aliases);
+          $entity = $item->_field_data[$content_item]['entity'];
+          if (!empty($entity)) {
+            $uri = entity_uri($item->_field_data[$content_item]['entity_type'], $entity);
+            $value = url($uri['path'], $uri['options']);
+          }
+        }
+       
+        if (!empty($label) && !empty($value)) {
+          $new_item->{$label} = $value;
         }
       }
       if (!empty($new_item)) {
