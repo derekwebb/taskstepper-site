@@ -72,12 +72,11 @@ function ng_blocks_theme() {
 
 
 function ng_blocks_views_post_execute(&$view) {
-  //dpm($view->query);
+
 }
 
 
 function ng_blocks_services_views_execute_view_alter(&$output, $view) {
-  //watchdog('services views view exec alter', '<pre>'.print_r($view->query, true).'</pre>');
   $paged_output = array(
     'results' => $output,
     'limit' => $view->query->limit,
