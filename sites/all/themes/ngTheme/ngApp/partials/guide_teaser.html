@@ -1,3 +1,9 @@
-<h2 class="guide-teaser-title"><a href="{{$parent.guide.path}}">{{$parent.guide.node_title}}</a></h2>
-<div class="guide-teaser-intro" ng-bind-html="$parent.guide.introduction">{{$parent.guide.introduction}}</div>
-
+<div ng-controller="guideListController as guideList">
+  <h2 class="guide-teaser-title"><a href="{{guide.path}}">{{guide.node_title}}</a></h2>
+  <div class="guide-teaser-intro" ng-html-compile="guide.Introduction" ng-show="guide.showFull">
+    {{guide.Introduction}}
+  </div>
+  <div class="guide-teaser-intro-short" ng-html-compile="guide.Intro_short" ng-show="!guide.showFull">
+    {{guide.Intro_short}}
+  </div>
+</div>
