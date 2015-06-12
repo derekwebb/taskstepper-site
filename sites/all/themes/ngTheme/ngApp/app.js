@@ -2,6 +2,6 @@
   'use strict';
   
   // Initialize the app
-  var app = angular.module('app', ['ngResource', 'ngSanitize']); 
+  var app = angular.module('app', ['ngResource', 'ngSanitize', 'ngHtmlCompile']); 
   
 })(window.angular);
