@@ -11,7 +11,7 @@ stylesheets[print][] = css/print.css
 
 ; - Global scripts
 ; -- Libraries
-;scripts[] = js/lib/prettify/src/prettify.js
+scripts[] = js/truncate/jquery.truncate.js
 
 ; -- ngApp
 
@@ -27,6 +27,7 @@ scripts[] = ngApp/services/toolkit_service.js
 
 ; Directives
 scripts[] = ngApp/directives/user_directives.js
+scripts[] = ngApp/directives/ngHtmlCompile.js
 
 ; Controllers
 scripts[] = ngApp/controllers/header_controller.js
