@@ -12,6 +12,7 @@ stylesheets[print][] = css/print.css
 ; - Global scripts
 ; -- Libraries
 scripts[] = js/truncate/jquery.truncate.js
+scripts[] = js/timeago/jquery.timeago.js
 
 ; -- ngApp
 
@@ -23,11 +24,15 @@ scripts[] = ngApp/services/menu_service.js
 scripts[] = ngApp/services/login_service.js
 scripts[] = ngApp/services/register_service.js
 scripts[] = ngApp/services/view_service.js
+scripts[] = ngApp/services/user_service.js
+scripts[] = ngApp/services/image_service.js
+scripts[] = ngApp/services/path_service.js
 scripts[] = ngApp/services/toolkit_service.js
 
 ; Directives
 scripts[] = ngApp/directives/user_directives.js
 scripts[] = ngApp/directives/ngHtmlCompile.js
+scripts[] = ngApp/directives/timeago_directive.js
 
 ; Controllers
 scripts[] = ngApp/controllers/header_controller.js
