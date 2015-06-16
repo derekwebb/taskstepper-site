@@ -62,7 +62,7 @@ function ngTheme_preprocess_html(&$vars) {
     $user_image_url = image_style_url('user_thumb_small', image_style_path('user_thumb_small', $user->picture->uri));
   }
   else {
-    $user_image_url = image_style_url('user_thumb_small', image_style_path('user_thumb_small', 'public://ts_logo.png'));
+    $user_image_url = image_style_url('user_thumb_small', image_style_path('user_thumb_small', 'public://ts_logo_med.png'));
   }
   
   // Required settings  
@@ -72,12 +72,19 @@ function ngTheme_preprocess_html(&$vars) {
         'user_info' => array(
           'user_name' => $user_name, 
           'user_uid' => $user_uid,
-          'user_image_url' => $user_image_url
+          'user_image_url' => $user_image_url,
+          'user_thumbnail_med_preset' => 'user_thumb',
+          'user_thumbnail_sml_preset' => 'user_thumb_small',
+          'user_default_image' => theme_get_setting('logo_path')
         )
       )
     ), 
   'setting');
   // End settings ---
+}
+
+function ngTheme_preprocess($vars, $hook) {
+  //dpm($hook);
 }
 
 // Add form id theme hook suggestions.
@@ -97,6 +104,7 @@ function ngTheme_preprocess_page(&$vars) {
 
 // Preprocess blocks
 function ngTheme_preprocess_block(&$vars) {
+  //dpm($vars);
   $path = drupal_get_path('theme', 'ngTheme');
   $suggestions = $vars['theme_hook_suggestions'];
   foreach($suggestions as $suggestion) {
@@ -138,7 +146,7 @@ function ngTheme_preprocess_user_picture(&$vars) {
 
 // Compiles a user image
 function ngTheme_compile_default_user_image($user, $image_style, $title) {
-  $uri = variable_get('ng_theme_default_user_img', 'public://ts_logo.png'); // default image
+  $uri = variable_get('ng_theme_default_user_img', 'public://ts_logo_med.png'); // default image
 
   if (is_numeric($user)) $user = user_load($user);
   if (is_object($user) && $user->uid) {
