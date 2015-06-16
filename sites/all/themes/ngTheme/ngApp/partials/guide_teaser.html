@@ -1,12 +1,23 @@
-<div ng-controller="guideListController as guideList">
+<div class="guide-teaser">
   <div class="clearfix">
-    <h2 class="guide-teaser-title left"><a href="{{guide.path}}">{{guide.node_title}}</a></h2>
-    <div class="author-name right"><a href="user/{{guide.node_uid}}">{{guide.users_node_name}}</a></div>
+    <h2 class="guide-teaser-title"><a href="{{$parent.guide.path}}">{{$parent.guide.node_title}}</a></h2>
+    <div class="node-meta">
+      <div class="user-info left">
+        By <a href="/user/{{$parent.guide.node_uid}}"><img src="{{$parent.guideList.users[$parent.guide.node_uid].picture.url}}"></a>
+        <a href="/user/{{$parent.guide.node_uid}}">{{$parent.guide.users_node_name}}</a> 
+        <span class="time-ago" title="{{$parent.guide.node_changed}}"></span>
+      </div>
+      <ul class="topics left">
+        <li ng-repeat="link in $parent.guide.TopicText">
+          <a href="/{{$parent.guide.TopicTid[$index].alias}}" ng-click="$parent.guideList.termClick($event, $parent.guide.TopicTid[$index].tid)">{{link}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="guide-teaser-intro" ng-html-compile="guide.Introduction" ng-show="guideList.showIndex[$index]">
-    {{guide.Introduction}}
+  <div class="guide-teaser-intro" ng-html-compile="$parent.guide.Introduction" ng-show="$parent.guideList.showIndex[$index]">
+    {{$parent.guide.Introduction}}
   </div>
-  <div class="guide-teaser-intro-short" ng-html-compile="guide.Intro_short" ng-show="!guideList.showIndex[$index]">
-    {{guide.Intro_short}}
+  <div class="guide-teaser-intro-short" ng-html-compile="$parent.guide.Intro_short" ng-show="!$parent.guideList.showIndex[$index]">
+    {{$parent.guide.Intro_short}}
   </div>
 </div>
