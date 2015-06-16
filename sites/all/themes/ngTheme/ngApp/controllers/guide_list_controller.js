@@ -43,79 +43,137 @@ var guideListController = angular.module('app')
   
   // Term click - standin until pager is finished
   this.termClick = function(event, tid) {
-    alert('You clicked '+tid);
+    //alert('You clicked '+tid);
+    //$scope.guideList.fetchView({tid:tid});
+    //$scope.guideList.viewParams.page = $scope.guideList.viewParams.page + 1;
+    $scope.guideList.resetView({args:{tid: tid}}, true);
+    $scope.guideList.fetchView();
     event.preventDefault();
   };
   
-  // Get guide-list results
-  // With arguments - 
-  //   ViewService.get({view_endpoint:'guide-service', view_path: 'guide-list', filter_args: {tid:1, uid:1}, limit: 1}, function(data) {
-  var data = ViewService.get({view_endpoint:'guide-service', view_path: 'guide-list'}, function(data) {
-    
-    // Process view guide-list body
-    processBody(data);
-    
-    // Process timestamp
-    processCreated(data);
-    
-    // Process terms
-    processTerms(data);
-       
-  }).$promise
+  // Arguments to be passed into the view
+  this.viewParams = {
+    page: 0,
+    limit: 5,
+    args: {},
+    offset: 0
+  };
   
-  // Get user info
-  .then(function(data) {
+  // Reset the View for the next page of items
+  this.resetView = function(params, reset) {
+    // Reset showIndex and users for next pass
+    $scope.guideList.showIndex = [];
+    $scope.guideList.users = {};
     
-    // Compile list of unique users
-    jQuery.each(data.results, function(key, row) {
-      if (!$scope.guideList.users.hasOwnProperty(row.node_uid)) {
-        $scope.guideList.users[row.node_uid] = {};
+    // These params are forever unchanging
+    //  they act to assist in returning to 
+    //  default settings.
+    var resetParams = {
+      page: 0,
+      limit: 5,
+      args: {},
+      offset: 0
+    };
+    
+    // Reset params
+    if (reset) {
+      $scope.guideList.viewParams = resetParams;  
+    }
+    
+    // Add params that were passed in
+    for (var p in resetParams) {
+      if (params.hasOwnProperty(p)) {
+        $scope.guideList.viewParams[p] = params[p];
       }
-    });
+    }
+  };
+  
+  // Fetch the view
+  this.fetchView = function() {
     
-    // Build promise first list
-    jQuery.each($scope.guideList.users, function(uid) {
-      promises.push(UserService.get({uid: uid}).$promise); // be sure to push the ".$promise" 
-    });
-
-    // Get all the unique users    
-    $q.all(promises).then(function(responses) {
-      jQuery.each(responses, function(key, user) {
-        // Reset user picture url while we are at it
-        $scope.guideList.users[user.uid] = resetUserPictureUrl(user);
-        promises = []; // reset promises list
-      });
-    })
+    params = $scope.guideList.viewParams;
     
-    // Get user user image preset info
-    .then(function() {
+    // Get guide-list results
+    // With arguments - 
+    var data = ViewService.get({
+      view_endpoint: 'guide-service', 
+      view_path:     'guide-list', 
+      filter_args:   params.args, 
+      limit:         params.limit, 
+      page:          params.page,
+      offset:        params.offset
+    }, function(data) {
       
+      // Process view guide-list body
+      processBody(data);
+      
+      // Process timestamp
+      processCreated(data);
+      
+      // Process terms
+      processTerms(data);
+         
+    }).$promise
+    
+    // Get user info
+    .then(function(data) {
+      
+      // Compile list of unique users
+      jQuery.each(data.results, function(key, row) {
+        if (!$scope.guideList.users.hasOwnProperty(row.node_uid)) {
+          $scope.guideList.users[row.node_uid] = {};
+        }
+      });
+      
+      // Build promise first list
       jQuery.each($scope.guideList.users, function(uid) {
-        promises.push(ImageService.get({
-          style: thumb_preset, 
-          uri: getUserImageUri($scope.guideList.users[uid])
-        }).$promise);
+        promises.push(UserService.get({uid: uid}).$promise); // be sure to push the ".$promise" 
       });
-      
+  
+      // Get all the unique users    
       $q.all(promises).then(function(responses) {
-        var i = 0; // good thing responses are all in the order they were put in.
-        jQuery.each($scope.guideList.users, function(uid) {
-          // User has a pic
-          if ($scope.guideList.users[uid].picture && $scope.guideList.users[uid].picture.hasOwnProperty('url')) {
-            $scope.guideList.users[uid].picture.url = responses[i].image; 
-          }
-          // User uses default pic
-          else {
-            $scope.guideList.users[uid].picture = {
-              url: responses[i].image
-            };
-          } i++;
+        jQuery.each(responses, function(key, user) {
+          // Reset user picture url while we are at it
+          $scope.guideList.users[user.uid] = resetUserPictureUrl(user);
+          promises = []; // reset promises list
         });
-        promises = [];
-      });
+      })
       
+      // Get user user image preset info
+      .then(function() {
+        
+        jQuery.each($scope.guideList.users, function(uid) {
+          promises.push(ImageService.get({
+            style: thumb_preset, 
+            uri: getUserImageUri($scope.guideList.users[uid])
+          }).$promise);
+        });
+        
+        $q.all(promises).then(function(responses) {
+          var i = 0; // good thing responses are all in the order they were put in.
+          jQuery.each($scope.guideList.users, function(uid) {
+            // User has a pic
+            if ($scope.guideList.users[uid].picture && $scope.guideList.users[uid].picture.hasOwnProperty('url')) {
+              $scope.guideList.users[uid].picture.url = responses[i].image; 
+            }
+            // User uses default pic
+            else {
+              $scope.guideList.users[uid].picture = {
+                url: responses[i].image
+              };
+            } i++;
+          });
+          promises = [];
+        });
+        
+      });
     });
-  });
+  };
+  
+  this.init = function() {
+    $scope.guideList.fetchView();
+  };
+  this.init();
   
   
   // Reset user picture so we dont see a larger image transform to a smaller one.
