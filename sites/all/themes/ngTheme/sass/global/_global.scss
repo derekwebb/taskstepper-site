@@ -237,3 +237,38 @@ div.tabs {
     }
   }
 }
+
+// Angular form styles (this removes red box shadow)
+.ng-pristine .ng-invalid-required {
+    box-shadow: none;
+}
+
+// I hate to do this, but preprocess block only works for blocks that are on all pages
+.block-ng-blocks-ng-guide-listing {
+  .topics {
+    margin: .5em 0;
+    li {
+      list-style: none;
+      float: left;
+      margin: 0 0 0 .5em;
+      a {
+        background: $ltgray;
+        @include border-radius(15px);
+        color: $black;
+        padding: 0 10px;
+        font-size: 90%;
+        font-weight: normal;
+        &:hover {
+          background: lighten($ltgray, 6%);
+        } 
+      }
+    }
+  }
+  .user-info {
+    margin: .5em .5em .5em 0;
+    img {
+      margin-bottom: -.35em;
+      margin-right: .25em;
+    }
+  }
+}

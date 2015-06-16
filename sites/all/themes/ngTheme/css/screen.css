@@ -1455,6 +1455,46 @@ div.tabs ul.secondary li a:active::-moz-focus-inner, div.tabs ul.secondary li a.
     border-radius: 5px;
   }
 }
+/* line 242, ../sass/global/_global.scss */
+.ng-pristine .ng-invalid-required {
+  box-shadow: none;
+}
+
+/* line 248, ../sass/global/_global.scss */
+.block-ng-blocks-ng-guide-listing .topics {
+  margin: .5em 0;
+}
+/* line 250, ../sass/global/_global.scss */
+.block-ng-blocks-ng-guide-listing .topics li {
+  list-style: none;
+  float: left;
+  margin: 0 0 0 .5em;
+}
+/* line 254, ../sass/global/_global.scss */
+.block-ng-blocks-ng-guide-listing .topics li a {
+  background: #dddddd;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  color: #000000;
+  padding: 0 10px;
+  font-size: 90%;
+  font-weight: normal;
+}
+/* line 261, ../sass/global/_global.scss */
+.block-ng-blocks-ng-guide-listing .topics li a:hover {
+  background: #ececec;
+}
+/* line 267, ../sass/global/_global.scss */
+.block-ng-blocks-ng-guide-listing .user-info {
+  margin: .5em .5em .5em 0;
+}
+/* line 269, ../sass/global/_global.scss */
+.block-ng-blocks-ng-guide-listing .user-info img {
+  margin-bottom: -.35em;
+  margin-right: .25em;
+}
+
 /* line 12, ../sass/global/grid.scss */
 .grid-1 {
   float: left;
