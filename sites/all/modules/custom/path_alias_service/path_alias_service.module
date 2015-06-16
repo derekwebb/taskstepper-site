@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function path_alias_service_ctools_plugin_api($owner, $api) {
+  if ($owner == 'services' && $api == 'services') {
+    return array(
+      'version' => 3,
+      'file' => 'path_alias_service.services.inc'
+    );
+  }
+}

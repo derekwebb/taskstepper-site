@@ -1,0 +1,8 @@
+name = Path alias service
+description = Get path aliases from services
+package = Services
+core = 7.x
+dependencies[] = services
+dependencies[] = path
+
+files[] = path_alias_service.services.inc

@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function image_preset_service_ctools_plugin_api($owner, $api) {
+  if ($owner == 'services' && $api == 'services') {
+    return array(
+      'version' => 3,
+      'file' => 'image_preset_service.services.inc'
+    );
+  }
+}

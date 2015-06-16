@@ -1,0 +1,8 @@
+name = Image preset service
+description = Generate new images via services and image presets
+package = Services
+core = 7.x
+dependencies[] = services
+dependencies[] = image
+
+files[] = image_preset_service.services.inc
