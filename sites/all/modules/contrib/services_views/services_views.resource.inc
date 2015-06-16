@@ -142,13 +142,12 @@ function services_views_execute_view($view_info, $view = NULL, $display_id = NUL
     if (!empty($_REQUEST['filter_args'])) {
       $default_display = $view->display['default'];
       $selected_display = $view->display[$display_id];
-      
       // Are the arguments default?
       if (!$selected_display->display_options['defaults']['arguments']) {
         $view_args = $selected_display->display_options['arguments'];
       }
       // use args from default display
-      else { 
+      else {
         $view_args = $default_display->display_options['arguments'];
       }
       
@@ -160,11 +159,13 @@ function services_views_execute_view($view_info, $view = NULL, $display_id = NUL
       }
 
       $request_args = $_REQUEST['filter_args']; // todo security check!
-      foreach($request_args as $index => $arg_str) {
-        $arg = explode('=', $arg_str);
-        $search = array_search($arg[0], $arg_order);
-        $get_args[$search] = $arg[1];
+      $request_args = json_decode($request_args);
+      
+      foreach($request_args as $index => $arg) {
+        $search = array_search($index, $arg_order);
+        $get_args[$search] = $arg;
       }
+      //watchdog('get args', print_r($get_args, true));
       $args = $get_args;
     }
     
