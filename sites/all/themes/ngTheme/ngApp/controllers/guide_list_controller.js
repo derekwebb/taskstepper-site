@@ -30,35 +30,30 @@ var guideListController = angular.module('app')
   // Store user info to be filled in when ready
   this.users = {}; // stored as {uid: data}
   
-  // For paging
-  this.page = 0;
-  this.itemCount = 5;
-  this.termArg = '';
-    
+  // Arguments object to be passed into the view
+  this.viewParams = {
+    page: 0,
+    limit: 1,
+    args: {},
+    offset: 0
+  };
+
+
   // Handle setting showIndex
   this.bodyClick = function(index, bool) {
     $scope.guideList.showIndex[index] = bool;
     console.log($scope.guideList);
   };
-  
+
+
   // Term click - standin until pager is finished
   this.termClick = function(event, tid) {
-    //alert('You clicked '+tid);
-    //$scope.guideList.fetchView({tid:tid});
-    //$scope.guideList.viewParams.page = $scope.guideList.viewParams.page + 1;
-    $scope.guideList.resetView({args:{tid: tid}}, true);
+    $scope.guideList.resetView({args: {tid: tid}}, true);
     $scope.guideList.fetchView();
     event.preventDefault();
   };
-  
-  // Arguments to be passed into the view
-  this.viewParams = {
-    page: 0,
-    limit: 5,
-    args: {},
-    offset: 0
-  };
-  
+
+
   // Reset the View for the next page of items
   this.resetView = function(params, reset) {
     // Reset showIndex and users for next pass
@@ -66,11 +61,11 @@ var guideListController = angular.module('app')
     $scope.guideList.users = {};
     
     // These params are forever unchanging
-    //  they act to assist in returning to 
+    //  and assist in returning view to 
     //  default settings.
-    var resetParams = {
+    var resetParams = { 
       page: 0,
-      limit: 5,
+      limit: 1,
       args: {},
       offset: 0
     };
@@ -80,7 +75,9 @@ var guideListController = angular.module('app')
       $scope.guideList.viewParams = resetParams;  
     }
     
-    // Add params that were passed in
+    // Add params that were passed in.
+    //  Comparing passed in params to
+    //  default params.
     for (var p in resetParams) {
       if (params.hasOwnProperty(p)) {
         $scope.guideList.viewParams[p] = params[p];
@@ -112,93 +109,86 @@ var guideListController = angular.module('app')
       
       // Process terms
       processTerms(data);
-         
+      
+      // Initialize the pager
+      initPager(data);
+      
     }).$promise
     
-    // Get user info
+    // Fetch info about users
     .then(function(data) {
       
-      // Compile list of unique users
-      jQuery.each(data.results, function(key, row) {
-        if (!$scope.guideList.users.hasOwnProperty(row.node_uid)) {
-          $scope.guideList.users[row.node_uid] = {};
-        }
-      });
-      
-      // Build promise first list
-      jQuery.each($scope.guideList.users, function(uid) {
-        promises.push(UserService.get({uid: uid}).$promise); // be sure to push the ".$promise" 
-      });
-  
-      // Get all the unique users    
-      $q.all(promises).then(function(responses) {
-        jQuery.each(responses, function(key, user) {
-          // Reset user picture url while we are at it
-          $scope.guideList.users[user.uid] = resetUserPictureUrl(user);
-          promises = []; // reset promises list
-        });
-      })
-      
-      // Get user user image preset info
-      .then(function() {
-        
-        jQuery.each($scope.guideList.users, function(uid) {
-          promises.push(ImageService.get({
-            style: thumb_preset, 
-            uri: getUserImageUri($scope.guideList.users[uid])
-          }).$promise);
-        });
-        
-        $q.all(promises).then(function(responses) {
-          var i = 0; // good thing responses are all in the order they were put in.
-          jQuery.each($scope.guideList.users, function(uid) {
-            // User has a pic
-            if ($scope.guideList.users[uid].picture && $scope.guideList.users[uid].picture.hasOwnProperty('url')) {
-              $scope.guideList.users[uid].picture.url = responses[i].image; 
-            }
-            // User uses default pic
-            else {
-              $scope.guideList.users[uid].picture = {
-                url: responses[i].image
-              };
-            } i++;
-          });
-          promises = [];
-        });
-        
-      });
+      // Add user info to scope        
+      processUsers(data);
+
     });
   };
   
-  this.init = function() {
+  
+  // Pager click
+  this.pagerClick = function(page) {
+    // note, reset is not set so args et.al. remain unchanged
+    $scope.guideList.resetView({page: page});
     $scope.guideList.fetchView();
   };
-  this.init();
   
   
-  // Reset user picture so we dont see a larger image transform to a smaller one.
-  var resetUserPictureUrl = function(user) {
-    if (!user.picture) {
-      user.picture = {}; 
-    }
-    else {
-      user.picture.url = '';
-    }
-    return user;
-  };
-  
-  var getUserImageUri = function(user) {
-    // do we have a user image?
-    if (user.picture && user.picture.hasOwnProperty('uri')) {
-      return image_uri = user.picture.uri;
+  // Initialize the controller
+  (function init() {
+    $scope.guideList.fetchView();
+  }());
+
+
+  // Create the pager for this set of results
+  var initPager = function(data) {
+    var i = 0; // holds the page
+    var x = 0; // counts how many pages we have added
+    var num_pages    = Math.ceil(data.total_rows / data.limit); // Ceiling to get the max number
+        
+    $scope.guideList.pager       = {}; // Init the pager object
+    $scope.guideList.pager.pages = []; // init the scope pages variable
+
+    $scope.guideList.pager.currentPage  = data.current_page;
+    $scope.guideList.pager.lastPage     = num_pages - 1;
+    $scope.guideList.pager.prevPage     = data.current_page - 1;
+    $scope.guideList.pager.nextPage     = data.current_page + 1;
+    $scope.guideList.pager.displayPages = 9;
+    
+    var middle_page = Math.ceil($scope.guideList.pager.displayPages / 2);
+    var remaining_pages = 0;
+    var first_page = 0;
+    
+    // Get the first page in the set
+    if (data.current_page >= middle_page) {
+      i = data.current_page - middle_page + 1;
+      first_page = i; // remember where our first page in the series is.
     }
     
-    // convert to variable get or somesuch
-    else {
-      return image_uri = default_img;
+    // Get the last page
+    if ((num_pages - data.current_page) < (middle_page)) {
+      remaining_pages = num_pages - data.current_page - 1;
+      i = num_pages - $scope.guideList.pager.displayPages;
+      i = (i < 0) ? 0 : i; // correct for short lists.
+    }
+    
+    // Only add pager if we have more than one page
+    if (num_pages > 1) {
+      do {
+        $scope.guideList.pager.pages.push(i);
+        i++; // increment the page index 
+        x++; // increment the count index (easiest way I know of to do this)
+      } while (x < $scope.guideList.pager.displayPages && x < num_pages);
+      
+      // End ellipsis
+      //  i is still set to the last page that was shown
+      $scope.guideList.pager.endEllipsis = (i < num_pages) ? '…' : false;
+            
+      // Start ellipsis
+      $scope.guideList.pager.startEllipsis = (first_page > 0 && i > $scope.guideList.pager.displayPages) ? '…' : false;
     }
   };
-  
+
+
   // http://project.loc/path-service/alias/term?id=1
   var processTerms = function(data) {
     // gather the unique tids for which to gather the path aliases
@@ -235,7 +225,73 @@ var guideListController = angular.module('app')
       promises = [];
     });
   };
-  
+
+
+  // Gather user info from results and process it into something
+  //  usable on the front end.
+  var processUsers = function(data) {
+    // Compile list of unique users
+    jQuery.each(data.results, function(key, row) {
+      if (!$scope.guideList.users.hasOwnProperty(row.node_uid)) {
+        $scope.guideList.users[row.node_uid] = {};
+      }
+    });
+    
+    // Build promise first list
+    jQuery.each($scope.guideList.users, function(uid) {
+      promises.push(UserService.get({uid: uid}).$promise); // be sure to push the ".$promise" 
+    });
+
+    // Get all the unique users    
+    $q.all(promises).then(function(responses) {
+      jQuery.each(responses, function(key, user) {
+        // Reset user picture url while we are at it
+        $scope.guideList.users[user.uid] = resetUserPictureUrl(user);
+        promises = []; // reset promises list
+      });
+    })
+    
+    // Get user user image preset info
+    .then(function() {
+      
+      // Process users to request images
+      processUserImages();
+            
+    });
+  };
+
+
+  // Process users and get images from image-service
+  var processUserImages = function() {
+
+    // Loop through users and get images
+    jQuery.each($scope.guideList.users, function(uid) {
+      promises.push(ImageService.get({
+        style: thumb_preset, 
+        uri: getUserImageUri($scope.guideList.users[uid])
+      }).$promise);
+    });
+
+    // Add updated pictures to the $scope    
+    $q.all(promises).then(function(responses) {
+      var i = 0; // good thing responses are all in the order they were put in.
+      jQuery.each($scope.guideList.users, function(uid) {
+        // User has a pic
+        if ($scope.guideList.users[uid].picture && $scope.guideList.users[uid].picture.hasOwnProperty('url')) {
+          $scope.guideList.users[uid].picture.url = responses[i].image; 
+        }
+        // User uses default pic
+        else {
+          $scope.guideList.users[uid].picture = {
+            url: responses[i].image
+          };
+        } i++;
+      });
+      promises = []; // reset promises
+    });
+  };
+
+
   // Process created timestamp
   var processCreated = function(data) {
     // Update/process results 
@@ -249,7 +305,7 @@ var guideListController = angular.module('app')
     $scope.guideList.guides = data.results;
   };
 
-  
+
   // Process the guide-list view fields.
   var processBody = function(data) {
     // Update/process results 
@@ -321,5 +377,31 @@ var guideListController = angular.module('app')
     // Set up the showIndex
     $scope.guideList.showIndex[row_index] = false;
     return short_intro;
+  };
+  
+  
+  // Reset user picture so we dont see a larger image transform to a smaller one.
+  var resetUserPictureUrl = function(user) {
+    if (!user.picture) {
+      user.picture = {}; 
+    }
+    else {
+      user.picture.url = '';
+    }
+    return user;
+  };
+
+
+  // Helper to get uri info from user data
+  var getUserImageUri = function(user) {
+    // do we have a user image?
+    if (user.picture && user.picture.hasOwnProperty('uri')) {
+      return image_uri = user.picture.uri;
+    }
+    
+    // Use default image (logo)
+    else {
+      return image_uri = default_img;
+    }
   };
 }]);
