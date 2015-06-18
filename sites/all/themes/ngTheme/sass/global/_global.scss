@@ -272,3 +272,12 @@ div.tabs {
     }
   }
 }
+
+.pager ul {
+  //text-align: center;
+  li.pager-page {
+    list-style: none;
+    display: inline-block;
+    margin: 0 1em 0 0;
+  }
+}

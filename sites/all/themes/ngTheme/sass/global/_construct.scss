@@ -4,8 +4,10 @@
 
 @import 'global/site_vars';
 @import 'global/fonts';
-//@import 'global/site_headers';
+@import 'global/headers';
 @import 'global/colors';
+
+@import 'compass/css3/border-radius';
 
 // hides
 .hide { position: absolute !important; left: -9999em; }
@@ -39,7 +41,6 @@ html .field-default {
   cursor: pointer;
 }
 
-
 // Site width
 .site-width {
   @include site_width;
@@ -56,6 +57,10 @@ strong, b,
   font-weight: bold;
 }
 
+em, i {
+  font-style: italic;
+}
+
 .sml,
 .small {
   font-size: 80%;
@@ -63,16 +68,11 @@ strong, b,
 }
 
 // Headers 
-/*
-.xxhuge { @include xxhuge; }
-.dblhuge { @include dblhuge; }
-.hugeplus { @include hugeplus; }
-.huge { @include huge; }
 .h1 { @include h1; }
 .h2 { @include h2; }
 .h3 { @include h3; }
 .h4 { @include h4; }
-*/
+.h5 { @include h5; }
 
 .nowrap {
   white-space: nowrap;
@@ -95,8 +95,16 @@ strong, b,
   display: block;
 }
 
+
+// Design 
+
+.rounded-5  { @include border-radius(5px); }
+.rounded-10 { @include border-radius(10px); }
+.rounded-15 { @include border-radius(15px); }
+.rounded-20 { @include border-radius(20px); }
+
 // Color construct
-/*
+
 .white { color: $white; }
 .black { color: $black; }
 .ltgray { color: $ltgray; }
@@ -142,13 +150,13 @@ strong, b,
 .bg-ltyellow { background: $ltyellow; }
 .bg-mdyellow { background: $mdyellow; }
 .bg-dkyellow { background: $dkyellow; }
-*/
+
 // See also site_colors partial
 
 
 // borders
 // -- lights
-/*
+
 .b-top { border-top: 1px solid $ltgray; }
 .b-bot { border-bottom: 1px solid $ltgray; }
 .b-left { border-left: 1px solid $ltgray; }
@@ -160,8 +168,7 @@ strong, b,
 .b-left-2 { border-left: 2px solid $ltgray; }
 .b-right-2 { border-right: 2px solid $ltgray; }
 .borders-2 { border: 2px solid $ltgray; }
-*/
-/*
+
 .b-top-ltblu { border-top: 1px solid $ltblue; }
 .b-bot-ltblu { border-bottom: 1px solid $ltblue; }
 .b-left-ltblu { border-left: 1px solid $ltblue; }
@@ -185,7 +192,7 @@ strong, b,
 .b-left-ltgrn { border-left: 1px solid $ltgreen; }
 .b-right-ltgrn { border-right: 1px solid $ltgreen; }
 .borders-ltgrn { border: 1px solid $ltgreen; }
-*/
+
 
 // margins
 .mt-0 {
@@ -246,6 +253,12 @@ strong, b,
 .mb-125 {
   margin-bottom: $default_vert_unit !important;
 }
+.ml-125 {
+  margin-left: $default_vert_unit !important;
+}
+.mr-125 {
+  margin-right: $default_vert_unit !important;
+}
 
 .mt-25 {
   margin-top: 2 * $default_vert_unit !important;
@@ -269,6 +282,9 @@ strong, b,
 
 
 // paddings
+.p-0 {
+  padding: 0 !important;
+}
 .pt-0 {
   padding-top: 0 !important;
 }
@@ -282,6 +298,9 @@ strong, b,
   padding-right: 0 !important;
 }
 
+.p-0625 {
+  padding: ($default_vert_unit / 2) !important;
+}
 .pt-0625 {
   padding-top: ($default_vert_unit / 2) !important;
 }
@@ -295,6 +314,9 @@ strong, b,
   padding-right: ($default_vert_unit / 2) !important;
 }
 
+.p-1 {
+  padding: 1em !important;
+}
 .pl-1 {
   padding-left: 1em !important;
 }
@@ -308,6 +330,15 @@ strong, b,
   padding-bottom: 1em !important;
 }
 
+.p-125 {
+  padding-top: $default_vert_unit !important;
+}
+.pl-125 {
+  padding-left: $default_vert_unit !important;
+}
+.pr-125 {
+  padding-right: $default_vert_unit !important;
+}
 .pt-125 {
   padding-top: $default_vert_unit !important;
 }
@@ -315,6 +346,9 @@ strong, b,
   padding-bottom: $default_vert_unit !important;
 }
 
+.p-25 {
+  padding: 2 * $default_vert_unit !important;
+}
 .pt-25 {
   padding-top: 2 * $default_vert_unit !important;
 }
@@ -328,10 +362,19 @@ strong, b,
   padding-right: 2 * $default_vert_unit !important;
 }
 
+.p-375 {
+  padding: 3 * $default_vert_unit !important;
+}
 .pt-375 {
   padding-top: 3 * $default_vert_unit !important;
 }
 .pb-375 {
   padding-bottom: 3 * $default_vert_unit !important;
+}
+.pl-375 {
+  padding-left: 3 * $default_vert_unit !important;
+}
+.pr-375 {
+  padding-right: 3 * $default_vert_unit !important;
 }
 

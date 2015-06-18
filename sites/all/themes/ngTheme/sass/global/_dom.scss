@@ -118,15 +118,16 @@ small {
   line-height: 1.25em;
 }
 
+
 hlite,
 .hlite {
   display: block;
-  background: lighten($ltyellow, 5%);
+  background: $ltyellow;
   color: darken($mdgray, 7%);
   margin-bottom: $default_vert_unit;
   padding: $default_vert_unit / 2;
-  text-align: center;
 }
+
 
 box, .box,
 pre {
