@@ -30,10 +30,13 @@ var guideListController = angular.module('app')
   // Store user info to be filled in when ready
   this.users = {}; // stored as {uid: data}
   
+  // Guide title 
+  this.guideTitle = Drupal.t("Guide listing");
+  
   // Arguments object to be passed into the view
   this.viewParams = {
     page: 0,
-    limit: 1,
+    limit: 5,
     args: {},
     offset: 0
   };
@@ -42,14 +45,24 @@ var guideListController = angular.module('app')
   // Handle setting showIndex
   this.bodyClick = function(index, bool) {
     $scope.guideList.showIndex[index] = bool;
-    console.log($scope.guideList);
   };
 
 
   // Term click - standin until pager is finished
-  this.termClick = function(event, tid) {
-    $scope.guideList.resetView({args: {tid: tid}}, true);
-    $scope.guideList.fetchView();
+  this.termClick = function(event, tid, text) {
+    // get any pre-existing user id argument
+    var user_arg = ($scope.guideList.viewParams.args.hasOwnProperty('uid')) ? $scope.guideList.viewParams.args.uid : 'all';
+    $scope.guideList.termFilter = text; // set filter info
+    $scope.guideList.resetView({args: {tid: tid, uid: user_arg}}, true);
+    event.preventDefault();
+  };
+  
+  
+  this.userClick = function(event, uid, name) {
+    // get any pre-existing term id argument
+    var term_arg = ($scope.guideList.viewParams.args.hasOwnProperty('tid')) ? $scope.guideList.viewParams.args.tid : 'all';
+    $scope.guideList.authorFilter = name; // set filter info
+    $scope.guideList.resetView({args: {tid: term_arg, uid: uid}}, true);
     event.preventDefault();
   };
 
@@ -65,7 +78,7 @@ var guideListController = angular.module('app')
     //  default settings.
     var resetParams = { 
       page: 0,
-      limit: 1,
+      limit: 5,
       args: {},
       offset: 0
     };
@@ -83,9 +96,34 @@ var guideListController = angular.module('app')
         $scope.guideList.viewParams[p] = params[p];
       }
     }
+    
+    $scope.guideList.fetchView();
   };
-  
-  // Fetch the view
+
+
+  // Clear filter argument(s) from view
+  //  Pass like resetFilters('f1 f2')
+  this.resetFilter = function(filters) {
+    var f = filters.split(' ');
+    for (var i in f) {
+      switch (f[i]) {
+        case 'tid': // clear term filter
+          $scope.guideList.termFilter = false;
+          break;
+        case 'uid': // clear author filter
+          $scope.guideList.authorFilter = false; 
+          break;
+      }
+      // Reset arg in viewParams
+      $scope.guideList.viewParams.args[f[i]] = 'all';
+    }
+    // If any args still remain, keep them. But reset all else.
+    $scope.guideList.resetView({args: $scope.guideList.viewParams.args}, true);
+  };
+
+
+  // Fetch the view - eg.
+  // http://project.loc/guide-service/guide-list?filter_args={"tid":"all","uid":"1"}
   this.fetchView = function() {
     
     params = $scope.guideList.viewParams;
@@ -111,7 +149,7 @@ var guideListController = angular.module('app')
       processTerms(data);
       
       // Initialize the pager
-      initPager(data);
+      processPager(data);
       
     }).$promise
     
@@ -140,10 +178,10 @@ var guideListController = angular.module('app')
 
 
   // Create the pager for this set of results
-  var initPager = function(data) {
-    var i = 0; // holds the page
+  var processPager = function(data) {
+    var i = 0; // holds the starting page
     var x = 0; // counts how many pages we have added
-    var num_pages    = Math.ceil(data.total_rows / data.limit); // Ceiling to get the max number
+    var num_pages = Math.ceil(data.total_rows / data.limit); // Ceiling to get the max number
         
     $scope.guideList.pager       = {}; // Init the pager object
     $scope.guideList.pager.pages = []; // init the scope pages variable
@@ -152,11 +190,15 @@ var guideListController = angular.module('app')
     $scope.guideList.pager.lastPage     = num_pages - 1;
     $scope.guideList.pager.prevPage     = data.current_page - 1;
     $scope.guideList.pager.nextPage     = data.current_page + 1;
-    $scope.guideList.pager.displayPages = 9;
     
-    var middle_page = Math.ceil($scope.guideList.pager.displayPages / 2);
-    var remaining_pages = 0;
-    var first_page = 0;
+    // Note: it's best if this is an odd number.
+    //  Presently even numbers will cause minor 
+    //  issues as a result of the middle page
+    //  being un-centered (@TODO)
+    $scope.guideList.pager.displayPages = 9; 
+    
+    var middle_page     = Math.ceil($scope.guideList.pager.displayPages / 2);
+    var first_page      = 0;
     
     // Get the first page in the set
     if (data.current_page >= middle_page) {
@@ -166,7 +208,6 @@ var guideListController = angular.module('app')
     
     // Get the last page
     if ((num_pages - data.current_page) < (middle_page)) {
-      remaining_pages = num_pages - data.current_page - 1;
       i = num_pages - $scope.guideList.pager.displayPages;
       i = (i < 0) ? 0 : i; // correct for short lists.
     }
@@ -175,8 +216,8 @@ var guideListController = angular.module('app')
     if (num_pages > 1) {
       do {
         $scope.guideList.pager.pages.push(i);
-        i++; // increment the page index 
-        x++; // increment the count index (easiest way I know of to do this)
+        i++; // increment the page index (does not necc. start at 0)
+        x++; // increment the count index (always starts at 0)
       } while (x < $scope.guideList.pager.displayPages && x < num_pages);
       
       // End ellipsis
@@ -301,7 +342,6 @@ var guideListController = angular.module('app')
       data.results[row].node_changed = new Date(Number(data.results[row].node_changed) * 1000).toISOString();
 
     }
-    //console.log($scope.guideList.guides);
     $scope.guideList.guides = data.results;
   };
 
