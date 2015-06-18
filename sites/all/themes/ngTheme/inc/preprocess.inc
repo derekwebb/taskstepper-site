@@ -94,7 +94,13 @@ function ngTheme_preprocess_form(&$vars) {
 
 
 function ngTheme_preprocess_page(&$vars) {
-  //dpm($vars);
+  
+  // Hide the title if the hide title field is set
+  $node = $vars['node'];
+  if (isset($node->field_hide_title) && field_get_items('node', $node, 'field_hide_title')) {
+    $vars['title'] = false;  
+  }
+  
   // Hide $tabs variable if no tabs are present
   if ($vars['tabs']['#primary'] == '') {
     $vars['tabs'] = FALSE;
