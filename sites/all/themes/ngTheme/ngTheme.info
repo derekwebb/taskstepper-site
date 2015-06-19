@@ -38,6 +38,7 @@ scripts[] = ngApp/directives/timeago_directive.js
 scripts[] = ngApp/controllers/header_controller.js
 scripts[] = ngApp/controllers/user_info_controller.js
 scripts[] = ngApp/controllers/guide_list_controller.js
+scripts[] = ngApp/controllers/guide_authors_controller.js
 
 ; -- end ngApp
 
