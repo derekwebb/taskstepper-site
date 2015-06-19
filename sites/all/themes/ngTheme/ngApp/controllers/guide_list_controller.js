@@ -1,16 +1,17 @@
 var guideListController = angular.module('app')
   .controller('guideListController', [
     '$scope',
+    '$rootScope',
     '$q',
     'ViewService',
     'UserService',
     'ImageService',
     'PathService',
     'ToolKit',
-  function($scope, $q, ViewService, UserService, ImageService, PathService, ToolKit) {
+  function($scope, $rootScope, $q, ViewService, UserService, ImageService, PathService, ToolKit) {
   
   // Local var stores which rows need more/less links
-  var rowIndex = [];
+  var moreIndex = [];
   
   // Storage for promise lists
   var promises = [];
@@ -36,7 +37,7 @@ var guideListController = angular.module('app')
   // Arguments object to be passed into the view
   this.viewParams = {
     page: 0,
-    limit: 5,
+    limit: 5, // @TODO: get the limit figure from view info
     args: {},
     offset: 0
   };
@@ -54,10 +55,15 @@ var guideListController = angular.module('app')
     var user_arg = ($scope.guideList.viewParams.args.hasOwnProperty('uid')) ? $scope.guideList.viewParams.args.uid : 'all';
     $scope.guideList.termFilter = text; // set filter info
     $scope.guideList.resetView({args: {tid: tid, uid: user_arg}}, true);
+    
+    // Broadcast change in term
+    $rootScope.$broadcast('termChanged', {tid:tid});
+    
     event.preventDefault();
   };
-  
-  
+
+
+  // Handle click of user name (maybe pic too - not sure about if I should implment that)
   this.userClick = function(event, uid, name) {
     // get any pre-existing term id argument
     var term_arg = ($scope.guideList.viewParams.args.hasOwnProperty('tid')) ? $scope.guideList.viewParams.args.tid : 'all';
@@ -65,6 +71,14 @@ var guideListController = angular.module('app')
     $scope.guideList.resetView({args: {tid: term_arg, uid: uid}}, true);
     event.preventDefault();
   };
+
+  
+  // Listen for changes of author filter from guide_authors_controller
+  //  NOTE: must use $scope to access $on here. this.$on results in 
+  //  Undefined function error.
+  $scope.$on('authorChanged', function(event, data) {
+    $scope.guideList.userClick(event, data.uid, data.name);
+  });
 
 
   // Reset the View for the next page of items
@@ -78,7 +92,7 @@ var guideListController = angular.module('app')
     //  default settings.
     var resetParams = { 
       page: 0,
-      limit: 5,
+      limit: 5, // @TODO: get the limit figure from view info
       args: {},
       offset: 0
     };
@@ -108,6 +122,8 @@ var guideListController = angular.module('app')
     for (var i in f) {
       switch (f[i]) {
         case 'tid': // clear term filter
+          // Broadcast that term was removed
+          $rootScope.$broadcast('termChanged', {}); // pass empty args
           $scope.guideList.termFilter = false;
           break;
         case 'uid': // clear author filter
@@ -126,7 +142,7 @@ var guideListController = angular.module('app')
   // http://project.loc/guide-service/guide-list?filter_args={"tid":"all","uid":"1"}
   this.fetchView = function() {
     
-    params = $scope.guideList.viewParams;
+    var params = $scope.guideList.viewParams;
     
     // Get guide-list results
     // With arguments - 
@@ -191,18 +207,15 @@ var guideListController = angular.module('app')
     $scope.guideList.pager.prevPage     = data.current_page - 1;
     $scope.guideList.pager.nextPage     = data.current_page + 1;
     
-    // Note: it's best if this is an odd number.
-    //  Presently even numbers will cause minor 
-    //  issues as a result of the middle page
-    //  being un-centered (@TODO)
-    $scope.guideList.pager.displayPages = 9; 
+    $scope.guideList.pager.displayPages = 4; 
     
     var middle_page     = Math.ceil($scope.guideList.pager.displayPages / 2);
     var first_page      = 0;
     
     // Get the first page in the set
     if (data.current_page >= middle_page) {
-      i = data.current_page - middle_page + 1;
+      var mod = ($scope.guideList.pager.displayPages % 2) ? 1 : 0; // ensure even numbers dont cause issues
+      i = data.current_page - middle_page + mod;
       first_page = i; // remember where our first page in the series is.
     }
     
@@ -366,8 +379,9 @@ var guideListController = angular.module('app')
   var updateIntro = function(row, row_index) {
     var intro = row['Introduction'].trim();
     var link = ' <a class="less" ng-click="guideList.bodyClick($index, false)">Less</a>';
-    
-    if (rowIndex[row_index]) { // only apply Less link if needed
+
+    // only apply Less link if needed
+    if (moreIndex[row_index]) {
       var index = intro.length - 1;
       var tag = [];
       if (intro.charAt(index) === '>') { // we have a tag at the end
@@ -396,7 +410,7 @@ var guideListController = angular.module('app')
   
   // Truncate the long intro into a shorter length blurb
   var getShortIntro = function(row, row_index) {
-    var link = ' <a class="more moreish" ng-click="guideList.bodyClick($index, true)">Read&nbsp;on</a>';
+    var link = ' <a class="more" ng-click="guideList.bodyClick($index, true)">Read&nbsp;on</a>';
     
     // Truncate if necc.
     var short_intro = jQuery.truncate(row['Introduction'], {
@@ -405,13 +419,27 @@ var guideListController = angular.module('app')
       ellipsis: '\u2026' + link
     });
 
-    var more = jQuery('.more', short_intro); // select more link
-
-    if (more.length) { // do we have a more link
-      rowIndex[row_index] = true;
+    var more = ''; // storage for more link
+    try {
+      more = jQuery('.more', short_intro); // select more link
+      if (!more.length) { // lets be doubly sure
+        // sometimes the ellipsis is added outside of wrapping tags
+        more = jQuery(short_intro).filter('.more');
+      }
+    } catch (err) { 
+      // use parseHTML to catch errant cases where outer tags are not used.
+      //  Content was simply a string with no outer HTML elements.
+      //  This can happen if the string is in full html format.
+      short_intro = jQuery.parseHTML(short_intro);
+      more = jQuery(short_intro).filter('.more');
+    }
+    
+    // do we have a more link? was it truncated?
+    if (more.length) {
+      moreIndex[row_index] = true;
     }
     else { // no more link
-      rowIndex[row_index] = false;
+      moreIndex[row_index] = false;
     }
 
     // Set up the showIndex
