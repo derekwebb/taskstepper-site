@@ -1,7 +1,7 @@
 <div class="guide-listing" ng-controller="guideListController as guideList">
+  <h1 class="mb-0625">{{guideList.guideTitle}}</h1>
   <div class="clearfix">
-    <h1 class="left mb-0625">{{guideList.guideTitle}}</h1>
-    <div class="guide-list-filters hlite rounded-20 ml-125 left" ng-show="guideList.termFilter || guideList.authorFilter">
+    <div class="guide-list-filters hlite rounded-20 mb-125 left" ng-show="guideList.termFilter || guideList.authorFilter">
       <span class="filter-intro">Filtered by</span>
       <span class="term-filter pointer" title="Reset topic filter" ng-show="guideList.termFilter" ng-click="guideList.resetFilter('tid')"><i>topic:</i> "<strong>{{guideList.termFilter}}</strong>" <span class="mdred pointer strong">&#215;</span></span>
       <span class="filter-join" ng-show="guideList.termFilter && guideList.authorFilter"> and</span>
